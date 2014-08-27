@@ -40,4 +40,6 @@ gem 'mongoid', '~> 4.0.0'
 
 group :test do
   gem 'rspec-rails'
+  # gem 'shoulda-matchers'
+  gem 'mongoid-rspec'
 end
