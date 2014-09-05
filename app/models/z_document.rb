@@ -1,5 +1,4 @@
-module ZapDoc
-  class Document < Item
+  class ZDocument < ZItem
     after_destroy :delete_file
 
     field :filename, type: String
@@ -10,15 +9,15 @@ module ZapDoc
       @data ||= ZapDoc.config.repository.read(self.filename)
     end
 
-    belongs_to :folder, class_name: 'ZapDoc::Folder'
+    belongs_to :folder, class_name: 'ZFolder'
 
     validates :filename, uniqueness: true
 
-    def save
+    def save(options = {})
       super if write
     end
 
-    def save!
+    def save!(options = {})
       if write
         super
       else
@@ -40,4 +39,3 @@ module ZapDoc
       ZapDoc.config.repository.delete(self.filename)
     end
   end
-end

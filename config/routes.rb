@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :folders
+  resources :z_folders
 
   resources :documents
 

@@ -1,10 +1,10 @@
-<%= form_for(@folder) do |f| %>
-  <% if @folder.errors.any? %>
+<%= form_for(@z_folder) do |f| %>
+  <% if @z_folder.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@folder.errors.count, "error") %> prohibited this item from being saved:</h2>
+      <h2><%= pluralize(@z_folder.errors.count, "error") %> prohibited this item from being saved:</h2>
 
       <ul>
-      <% @folder.errors.full_messages.each do |message| %>
+      <% @z_folder.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

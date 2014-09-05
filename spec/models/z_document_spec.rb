@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe ZapDoc::Document, :type => :model do
-  let(:d) { ZapDoc::Document.new }
+RSpec.describe ZDocument, :type => :model do
+  let(:d) { ZDocument.new }
 
   it 'should have a default filename' do
     expect(d.filename).to_not be_nil
@@ -18,7 +18,7 @@ RSpec.describe ZapDoc::Document, :type => :model do
     end
 
     it 'should read data when read from database' do
-      d2 = ZapDoc::Document.find_by(identifier: d.identifier)
+      d2 = ZDocument.find_by(identifier: d.identifier)
       expect(d2.data).to eq('Hello world')
     end
 
