@@ -14,3 +14,4 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+repository/development/ repository/test/
