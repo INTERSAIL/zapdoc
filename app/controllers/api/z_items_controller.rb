@@ -3,8 +3,9 @@ module Api
     before_filter :set_folder, only: :index
 
     def index
-      items = ZItem.where(folder: @folder)
-      render json: items, status: 200
+      items = ZItem.in_folder(@folder)
+
+      render json: ZItemInfo.from_z_item(items), status: 200
     end
 
     def show

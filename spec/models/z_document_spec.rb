@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ZDocument, :type => :model do
-  let(:d) { ZDocument.new }
+  let(:d) { ZDocument.new(label: 'label') }
 
   it 'should have a default filename' do
     expect(d.filename).to_not be_nil
@@ -10,7 +10,7 @@ RSpec.describe ZDocument, :type => :model do
   context 'data' do
     before :each do
       d.data = 'Hello world'
-      d.save
+      d.save!
     end
 
     it 'should save data when write to database' do

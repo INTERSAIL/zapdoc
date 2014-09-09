@@ -9,11 +9,14 @@ development:
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - ds061298.mongolab.com:61298
-#        - 192.168.1.192:27017
-      username: zapdoc
-      password: zapdoc
+        - 192.168.1.192:27017
+#        - ds061298.mongolab.com:61298
+#      username: zapdoc
+#      password: zapdoc
       options:
+        read: primary
+        max_retries: 1
+        retry_interval: 0
         # Change the default write concern. (default = { w: 1 })
         # write:
         # w: 1
