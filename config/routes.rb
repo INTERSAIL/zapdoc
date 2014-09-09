@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :z_items, only: [:index, :show]
+    resources :z_formats, only: :index do
+      get 'default', on: :collection
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

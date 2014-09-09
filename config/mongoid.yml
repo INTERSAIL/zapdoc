@@ -9,10 +9,10 @@ development:
       # Provides the hosts the default session can connect to. Must be an array
       # of host:port pairs. (required)
       hosts:
-        - 192.168.1.192:27017
-#        - ds061298.mongolab.com:61298
-#      username: zapdoc
-#      password: zapdoc
+#        - 192.168.1.192:27017
+        - ds061298.mongolab.com:61298
+      username: zapdoc
+      password: zapdoc
       options:
         read: primary
         max_retries: 1
@@ -66,10 +66,10 @@ test:
     default:
       database: zapdoc_test
       hosts:
-        - 192.168.1.192:27017
-#        - ds033469.mongolab.com:33469
-#      username: zapdoc
-#      password: zapdoc
+#        - 192.168.1.192:27017
+        - ds033469.mongolab.com:33469
+      username: zapdoc
+      password: zapdoc
       options:
         read: primary
         # In the test environment we lower the retries and retry interval to

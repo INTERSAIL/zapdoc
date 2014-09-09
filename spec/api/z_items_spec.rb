@@ -30,7 +30,10 @@ RSpec.describe 'Items', type: :request do
   pending 'should return only parent folder if not ROOT and empty'
   pending 'should return empty list if ROOT and empty'
 
-  pending 'should return 404 if a folder does not exists'
+  it 'should return 404 if a folder does not exists' do
+    get '/api/z_items?folder_id=fake123'
+    expect(response.status).to eq(404)
+  end
 
   pending 'should list items with identifier'
   pending 'should list items with label'
