@@ -1,11 +1,13 @@
 module Api
-  class ZItemsController < ApplicationController
-    before_filter :set_folder, only: :index
-
+  class ZItemsController < BaseItemsController
     def index
-      items = ZItem.in_folder(@folder)
+      if @folder.nil?
+        render json: {error: 'Folder not found'}, status: 404
+      else
+        items = ZItem.in_folder(@folder)
 
-      render json: ZItemInfo.from_z_item(items), status: 200
+        render json: ZItemInfo.from_z_item(items), status: 200
+      end
     end
 
     def show
@@ -14,20 +16,6 @@ module Api
         render json: item, status: 200
       else
         render json: {error: 'Item not found'}, status: 404
-      end
-    end
-
-    private
-    def set_folder
-      fid = params['folder_id']
-      if fid
-        @folder = fid=='0' ? ZFolder.root : ZFolder.find(fid)
-      else
-        @folder = ZFolder.root
-      end
-      if @folder.nil?
-        render json: {error: 'Folder not found'}, status: 404
-        return false
       end
     end
   end

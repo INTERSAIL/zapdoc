@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :z_items, only: [:index, :show]
+    resources :z_documents, only: [:index]
     resources :z_formats, only: :index do
       get 'default', on: :collection
     end
