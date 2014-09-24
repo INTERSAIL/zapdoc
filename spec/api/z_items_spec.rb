@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'Items', type: :request do
+# - ROOT
+# -- ROOT:1
+# -- ROOT:SUB1
+# --- SUB1:1
+
   before(:all) do
     ZItem.destroy_all
 
@@ -22,11 +27,37 @@ RSpec.describe 'Items', type: :request do
     get "/api/z_items?folder_id=#{@sub.id}"
     expect(response.status).to eq(200)
 
-    expect(json.count).to eq(1)
+    expect(json.count).to eq(2)
   end
 
-  pending 'should return the parent folder if not ROOT'
-  pending 'should not return the parent folder if ROOT'
+  it 'should return the parent folder if not ROOT' do
+    get "/api/z_items?folder_id=#{@sub.id}"
+
+    expect(json.select { |j| j[:identifier] == ZFolder.root.identifier }.count).to eq(1)
+  end
+
+  it 'should return root contents if folder_id=0' do
+    get "/api/z_items?folder_id=0"
+
+    expect(response.status).to eq(200)
+
+    expect(json.select { |j| j[:identifier] == @root_doc1.identifier}.count).to eq(1)
+  end
+
+  it 'should return root contents if folder_id not specified' do
+    get "/api/z_items"
+
+    expect(response.status).to eq(200)
+
+    expect(json.select { |j| j[:identifier] == @root_doc1.identifier}.count).to eq(1)
+  end
+
+  it 'should not return the parent folder if ROOT' do
+    get "/api/z_items?folder_id=0"
+
+    expect(json.select { |j| j[:identifier] == ZFolder.root.identifier }.count).to eq(0)
+  end
+
   pending 'should return only parent folder if not ROOT and empty'
   pending 'should return empty list if ROOT and empty'
 

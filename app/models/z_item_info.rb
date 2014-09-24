@@ -9,7 +9,8 @@ class ZItemInfo
       res = []
       item.each { |i| res << ZItemInfo.from_z_item(i) }
     else
-      res = ZItemInfo.new(item.attributes.slice(self.attribute_names))
+      attrs = item.attributes.select { |k,v| self.attribute_names.include?(k) }
+      res = ZItemInfo.new(attrs)
       res.type = item[:_type] || 'ZItem'
     end
     res

@@ -6,4 +6,8 @@ class ZFolder < ZItem
   def self.root
     ZFolder.find_or_create_by!(label: '__ROOT__')
   end
+
+  def root?
+    self.folder.nil?
+  end
 end

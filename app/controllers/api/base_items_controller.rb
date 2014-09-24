@@ -1,5 +1,5 @@
 module Api
-  class BaseItemsController < ApplicationController
+  class BaseItemsController < ApiController
     before_filter :set_folder, only: :index
 
     private

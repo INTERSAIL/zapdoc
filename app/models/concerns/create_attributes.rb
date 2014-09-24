@@ -12,7 +12,7 @@ module CreateAttributes
 
     private
     def create_attributes(*names)
-      @@names = names
+      @@names = names.map(&:to_s)
 
       names.each do |n|
         send('attr_accessor', n.to_sym)

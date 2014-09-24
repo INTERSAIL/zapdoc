@@ -6,7 +6,7 @@ module Api
       else
         documents = ZDocument.in_folder(@folder)
 
-        render json: ZItemInfo.from_z_item(documents), status: 200,
+        render json: ZItemInfo.from_z_item(documents), status: 200
       end
     end
   end
