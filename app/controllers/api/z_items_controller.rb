@@ -5,7 +5,11 @@ module Api
         render json: {error: 'Folder not found'}, status: 404
       else
         items = ZItem.in_folder(@folder).to_a
-        items.unshift(@folder.folder) unless @folder.root?
+
+        unless @folder.root?
+          @folder.folder.label = '..'
+          items.unshift(@folder.folder)
+        end
 
         render json: ZItemInfo.from_z_item(items), status: 200
       end

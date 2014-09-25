@@ -35,6 +35,7 @@ class ZItem
   private
   def set_defaults
     self.identifier ||= SecureRandom.uuid
+    self.folder ||= ZFolder.root unless self.root?
   end
 
   def historicize

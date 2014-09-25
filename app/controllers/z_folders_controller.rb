@@ -1,10 +1,10 @@
-class ZFoldersController < ApplicationController
+class ZFoldersController < ApplicationItemsBaseController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
   # GET /folders
   # GET /folders.json
   def index
-    @z_folders = ZFolder.all
+    @z_folders = @folder.folders
   end
 
   # GET /folders/1
@@ -14,7 +14,7 @@ class ZFoldersController < ApplicationController
 
   # GET /folders/new
   def new
-    @z_folder = ZFolder.new
+    @z_folder = ZFolder.new(folder: @folder)
   end
 
   # GET /folders/1/edit
@@ -56,7 +56,7 @@ class ZFoldersController < ApplicationController
   def destroy
     @z_folder.destroy
     respond_to do |format|
-      format.html { redirect_to folders_url, notice: 'folder was successfully destroyed.' }
+      format.html { redirect_to z_folders_url, notice: 'folder was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +69,6 @@ class ZFoldersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def folder_params
-      params.require(:z_folder).permit(:label)
+      params.require(:z_folder).permit(:label, :folder_id)
     end
 end

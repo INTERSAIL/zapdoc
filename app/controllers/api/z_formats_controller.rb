@@ -1,5 +1,5 @@
 module Api
-  class ZFormatsController < ApplicationController
+  class ZFormatsController < ApiController
     def index
       formats = ZFormat.all
       render json: formats, status: 200

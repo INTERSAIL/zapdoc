@@ -13,13 +13,18 @@
   </thead>
 
   <tbody>
+    <% unless @folder.root? %>
+      <tr>
+        <td colspan="6"><%= link_to '..', z_folders_path(folder_id: @folder.folder.identifier) %></td>
+      </tr>
+    <% end %>
     <% @z_folders.each do |folder| %>
       <tr>
-        <td><%= folder.label %></td>
+        <td><%= link_to folder.label, z_folders_path(folder_id: folder.identifier) %></td>
         <td><%= l(folder.updated_at) %></td>
         <td><%= l(folder.created_at) %></td>
         <td><%= link_to 'Show', folder %></td>
-        <td><%= link_to 'Edit', edit_folder_path(folder) %></td>
+        <td><%= link_to 'Edit', edit_z_folder_path(folder) %></td>
         <td><%= link_to 'Destroy', folder, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -28,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New Folder', new_folder_path %>
+<%= link_to 'New Folder', new_z_folder_path(folder_id: @folder.identifier) %>

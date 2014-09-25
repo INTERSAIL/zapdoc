@@ -3,11 +3,25 @@ class ZFolder < ZItem
   has_many :folders, class_name: 'ZFolder', dependent: :destroy
   has_many :items, class_name: 'ZItem', dependent: :destroy
 
+  field :is_root, type: Boolean
+
+  class UniqueRootValidator < ActiveModel::EachValidator
+    def validate_each(record, attribute, value)
+      record.errors.add attribute, (options[:message] || 'Cannot have two root folders') if value && ZFolder.find_by(is_root: true)
+    end
+  end
+
+  validates :is_root, unique_root: true
+
+  def self.root_label
+    '__ROOT__'
+  end
+
   def self.root
-    ZFolder.find_or_create_by!(label: '__ROOT__')
+    @@root ||= (ZFolder.find_by(is_root: true) || ZFolder.create!(label: root_label, is_root: true))
   end
 
   def root?
-    self.folder.nil?
+    self.is_root
   end
 end
