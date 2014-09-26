@@ -14,24 +14,26 @@ RSpec.describe 'Items', type: :request do
 
     @sub = @root.folders.create!(label: 'ROOT:SUB1')
     @sub_doc1 = @sub.documents.create!(label: 'SUB1:1')
+
+    @sub2 = @root.folders.create(label: 'ROOT:SUB2')
   end
 
   it 'should list all items in ROOT' do
     get "/api/z_items"
     expect(response.status).to eq(200)
 
-    expect(json.count).to eq(2)
+    expect(json.count).to eq(3)
   end
 
   it 'should list all items in SUB1' do
-    get "/api/z_items?folder_id=#{@sub.id}"
+    get "/api/z_items?folder_id=#{@sub.identifier}"
     expect(response.status).to eq(200)
 
     expect(json.count).to eq(2)
   end
 
   it 'should return the parent folder if not ROOT' do
-    get "/api/z_items?folder_id=#{@sub.id}"
+    get "/api/z_items?folder_id=#{@sub.identifier}"
 
     expect(json.select { |j| j[:identifier] == ZFolder.root.identifier }.count).to eq(1)
   end
@@ -58,19 +60,51 @@ RSpec.describe 'Items', type: :request do
     expect(json.select { |j| j[:identifier] == ZFolder.root.identifier }.count).to eq(0)
   end
 
-  pending 'should return only parent folder if not ROOT and empty'
-  pending 'should return empty list if ROOT and empty'
+  it 'should return only parent folder if not ROOT and empty' do
+    get "/api/z_items?folder_id=#{@sub2.identifier}"
+
+    expect(json.count).to eq(1)
+    expect(json[0][:identifier]).to eq(@root.identifier)
+  end
 
   it 'should return 404 if a folder does not exists' do
     get '/api/z_items?folder_id=fake123'
     expect(response.status).to eq(404)
   end
 
-  pending 'should list items with identifier'
-  pending 'should list items with label'
-  pending 'should list items with type'
-  pending 'should list items with revision'
-  pending 'should list items with created_at'
+  context 'check items attributes' do
+    before(:each) { get '/api/z_items' }
+
+    it 'should list items with identifier' do
+      json.each do |j|
+        expect(j.has_key?(:identifier)).to eq(true)
+      end
+    end
+
+    it 'should list items with label' do
+      json.each do |j|
+        expect(j.has_key?(:label)).to eq(true)
+      end
+    end
+
+    it 'should list items with type' do
+      json.each do |j|
+        expect(j.has_key?(:type)).to eq(true)
+      end
+    end
+
+    it 'should list items with revision' do
+      json.each do |j|
+        expect(j.has_key?(:revision)).to eq(true)
+      end
+    end
+
+    it 'should list items with created_at' do
+      json.each do |j|
+        expect(j.has_key?(:created_at)).to eq(true)
+      end
+    end
+  end
 
   pending 'should be possible to list only all folders in ROOT'
   pending 'should be possible to list only all documents in ROOT'
@@ -132,7 +166,7 @@ RSpec.describe 'Items', type: :request do
   end
 
   it 'should get document in ROOT' do
-    get "/api/z_items/#{@root_doc1.id}"
+    get "/api/z_items/#{@root_doc1.identifier}"
     expect(response.status).to eq(200)
 
     expect(json[:label]).to eq(@root_doc1.label)

@@ -37,6 +37,10 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  config.before(:all) do
+    ZItem.destroy_all
+  end
+
   config.after(:all) do
     FileUtils.rm_f(Dir[File.join(ZapDoc.config.repository.path, '[^.]*')])
   end

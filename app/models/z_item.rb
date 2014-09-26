@@ -35,7 +35,7 @@ class ZItem
   private
   def set_defaults
     self.identifier ||= SecureRandom.uuid
-    self.folder ||= ZFolder.root unless self.root?
+    self.folder ||= ZFolder.root unless (self.respond_to?(:root?) && self.root?)
   end
 
   def historicize

@@ -37,4 +37,9 @@ RSpec.describe ZItem, :type => :model do
       expect(item.histories.first.revision).to eq(1)
     end
   end
+
+  it 'should have a default folder' do
+    i = ZItem.create(label: '1')
+    expect(i.folder.identifier).to eq(ZFolder.root.identifier)
+  end
 end

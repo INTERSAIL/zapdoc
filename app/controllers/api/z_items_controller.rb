@@ -16,7 +16,7 @@ module Api
     end
 
     def show
-      item = ZItem.find(params[:id])
+      item = ZItem.find_by(identifier: params[:id])
       if item
         render json: item, status: 200
       else

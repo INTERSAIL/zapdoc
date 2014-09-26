@@ -30,4 +30,12 @@ RSpec.describe ZFolder, type: :model do
       expect(@root.folders.count).to eq(1)
     end
   end
+
+  it 'should exists a root folder' do
+    expect(ZFolder.root).to_not be_nil
+  end
+
+  it 'root folder must have its folder set to nil' do
+    expect(ZFolder.root.folder).to be_nil
+  end
 end
