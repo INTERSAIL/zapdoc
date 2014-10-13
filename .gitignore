@@ -15,5 +15,4 @@
 /log/*.log
 /tmp
 repository/*/
-
-.idea
+/.idea

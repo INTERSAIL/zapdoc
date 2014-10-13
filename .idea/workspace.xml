@@ -4,7 +4,6 @@
     <list default="true" id="f1a50eed-e9e7-4ef7-b503-5838fe11600e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/zapdoc.iml" afterPath="$PROJECT_DIR$/.idea/zapdoc.iml" />
     </list>
     <ignored path="zapdoc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,16 +28,16 @@
     <SUITE FILE_PATH="coverage/zapdoc@Rails_console__zapdoc.coverage" NAME="Rails console: zapdoc Coverage Results" MODIFIED="1411654683200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
     <SUITE FILE_PATH="coverage/zapdoc@Run_spec__listing_items_spec___zapdoc.coverage" NAME="Run spec 'listing_items_spec': zapdoc Coverage Results" MODIFIED="1410166066959" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
     <SUITE FILE_PATH="coverage/zapdoc@_should_list_all_items_in_SUB1__zapdoc.coverage" NAME=" should list all items in SUB1: zapdoc Coverage Results" MODIFIED="1410966907988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
-    <SUITE FILE_PATH="coverage/zapdoc@db_test_prepare__zapdoc.coverage" NAME="db:test:prepare: zapdoc Coverage Results" MODIFIED="1410966205224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
     <SUITE FILE_PATH="coverage/zapdoc@Run_spec__item_spec___zapdoc.coverage" NAME="Run spec 'item_spec': zapdoc Coverage Results" MODIFIED="1410166157783" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
+    <SUITE FILE_PATH="coverage/zapdoc@db_test_prepare__zapdoc.coverage" NAME="db:test:prepare: zapdoc Coverage Results" MODIFIED="1410966205224" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
     <SUITE FILE_PATH="coverage/zapdoc@_should_get_document_in_ROOT__zapdoc.coverage" NAME=" should get document in ROOT: zapdoc Coverage Results" MODIFIED="1411746954840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
     <SUITE FILE_PATH="coverage/zapdoc@Listing_all_items__zapdoc.coverage" NAME="Listing all items: zapdoc Coverage Results" MODIFIED="1410167744595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
-    <SUITE FILE_PATH="coverage/zapdoc@routes__zapdoc.coverage" NAME="routes: zapdoc Coverage Results" MODIFIED="1410294341631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
     <SUITE FILE_PATH="coverage/zapdoc@Run_spec__z_item_spec___zapdoc.coverage" NAME="Run spec 'z_item_spec': zapdoc Coverage Results" MODIFIED="1410169466020" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
+    <SUITE FILE_PATH="coverage/zapdoc@routes__zapdoc.coverage" NAME="routes: zapdoc Coverage Results" MODIFIED="1410294341631" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
     <SUITE FILE_PATH="coverage/zapdoc@Run_spec__document_spec___zapdoc.coverage" NAME="Run spec 'document_spec': zapdoc Coverage Results" MODIFIED="1409156737416" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
-    <SUITE FILE_PATH="coverage/zapdoc@Run_spec__z_formats_spec___zapdoc.coverage" NAME="Run spec 'z_formats_spec': zapdoc Coverage Results" MODIFIED="1410294346723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
-    <SUITE FILE_PATH="coverage/zapdoc@Run_spec__z_folder_spec___zapdoc.coverage" NAME="Run spec 'z_folder_spec': zapdoc Coverage Results" MODIFIED="1410169458684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
     <SUITE FILE_PATH="coverage/zapdoc@Run_spec__ttt_spec___zapdoc.coverage" NAME="Run spec 'ttt_spec': zapdoc Coverage Results" MODIFIED="1409050273117" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
+    <SUITE FILE_PATH="coverage/zapdoc@Run_spec__z_folder_spec___zapdoc.coverage" NAME="Run spec 'z_folder_spec': zapdoc Coverage Results" MODIFIED="1410169458684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
+    <SUITE FILE_PATH="coverage/zapdoc@Run_spec__z_formats_spec___zapdoc.coverage" NAME="Run spec 'z_formats_spec': zapdoc Coverage Results" MODIFIED="1410294346723" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
     <SUITE FILE_PATH="coverage/zapdoc@Run_spec__z_document_spec___zapdoc.coverage" NAME="Run spec 'z_document_spec': zapdoc Coverage Results" MODIFIED="1410166162816" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="zapdoc" />
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -66,8 +65,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60509557" vertical-offset="0" max-vertical-offset="471">
-              <caret line="19" column="5" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5084746" vertical-offset="0" max-vertical-offset="472">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -138,16 +137,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="270">
               <caret line="5" column="42" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="z_item_info.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/z_item_info.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="345">
-              <caret line="5" column="43" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -262,8 +251,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="RailsProjectView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -835,9 +824,12 @@
       <item index="8" class="java.lang.String" itemvalue="RSpec. should get document in ROOT: zapdoc" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Rake.routes: zapdoc" />
-        <item index="1" class="java.lang.String" itemvalue="RSpec.All specs in spec: zapdoc" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="RSpec. should get document in ROOT: zapdoc" />
+        <item index="1" class="java.lang.String" itemvalue="Rake.routes: zapdoc" />
+        <item index="2" class="java.lang.String" itemvalue="RSpec.All specs in spec: zapdoc" />
+        <item index="3" class="java.lang.String" itemvalue="RSpec.Run spec 'z_folder_spec': zapdoc" />
+        <item index="4" class="java.lang.String" itemvalue="RSpec.check items attributes: zapdoc" />
       </list>
     </recent_temporary>
   </component>
@@ -868,17 +860,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="874" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32862645" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32862645" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2746781" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27825466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3995451" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32991013" sideWeight="0.24821173" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32862645" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32793018" sideWeight="0.7517871" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3297953" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -918,13 +910,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/Development__zapdoc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/initializers/wrap_parameters.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
@@ -1278,10 +1263,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="19485">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60509557" vertical-offset="0" max-vertical-offset="471">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5084746" vertical-offset="0" max-vertical-offset="472">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
           <folding />
         </state>
       </provider>
