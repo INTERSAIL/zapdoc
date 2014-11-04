@@ -13,7 +13,7 @@ RSpec.describe 'Formats', type: :request do
     get '/api/z_formats'
     expect(response.status).to eq(200)
 
-    expect(json.count).to eq(3)
+    expect(json.count).to eq(4)
   end
 
   it 'list must include :unknown with mime_type application/octet-stream and default=true' do
@@ -29,6 +29,11 @@ RSpec.describe 'Formats', type: :request do
   it 'list must include :p7m with mime_type application/pkcs7-data' do
     get '/api/z_formats'
     expect_format(json, :p7m, 'application/pkcs7-data', false)
+  end
+
+  it 'list must include :txt with mime_type text/plain' do
+    get '/api/z_formats'
+    expect_format(json, :txt, 'text/plain', false)
   end
 
   it 'should return the default format' do

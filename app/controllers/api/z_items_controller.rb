@@ -18,7 +18,7 @@ module Api
     def show
       item = ZItem.find_by(identifier: params[:id])
       if item
-        render json: item, status: 200
+        render json: ZItemInfo.from_z_item(item), status: 200
       else
         render json: {error: 'Item not found'}, status: 404
       end

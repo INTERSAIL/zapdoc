@@ -2,7 +2,7 @@ class ZDocument < ZItem
   after_destroy :delete_file
 
   field :filename, type: String
-  field :format, type: String
+  field :format_identifier, type: String
 
   attr_accessor :data
   def data

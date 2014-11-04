@@ -1,23 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Items', type: :request do
-# - ROOT
-# -- ROOT:1
-# -- ROOT:SUB1
-# --- SUB1:1
-
-  before(:all) do
-    ZItem.destroy_all
-
-    @root = ZFolder.root
-    @root_doc1 = @root.documents.create(label: 'ROOT:1')
-
-    @sub = @root.folders.create!(label: 'ROOT:SUB1')
-    @sub_doc1 = @sub.documents.create!(label: 'SUB1:1')
-
-    @sub2 = @root.folders.create(label: 'ROOT:SUB2')
-  end
-
   it 'should list all items in ROOT' do
     get "/api/z_items"
     expect(response.status).to eq(200)
@@ -73,49 +56,34 @@ RSpec.describe 'Items', type: :request do
   end
 
   context 'check items attributes' do
-    before(:each) { get '/api/z_items' }
+    before(:all) { get '/api/z_items' }
 
-    it 'should list items with identifier' do
+    it 'should have all attribures for each item' do
       json.each do |j|
-        expect(j.has_key?(:identifier)).to eq(true)
+        check_attributes_for_item_info(j)
       end
     end
 
-    it 'should list items with label' do
-      json.each do |j|
-        expect(j.has_key?(:label)).to eq(true)
-      end
-    end
-
-    it 'should list items with type' do
-      json.each do |j|
-        expect(j.has_key?(:type)).to eq(true)
-      end
-    end
-
-    it 'should list items with revision' do
-      json.each do |j|
-        expect(j.has_key?(:revision)).to eq(true)
-      end
-    end
-
-    it 'should list items with created_at' do
-      json.each do |j|
-        expect(j.has_key?(:created_at)).to eq(true)
-      end
-    end
   end
 
   pending 'should be possible to list only all folders in ROOT'
   pending 'should be possible to list only all documents in ROOT'
 
-  pending 'should get document info given an identifier'
-  pending 'should return 404 if document does not exists'
-  pending 'should get label in document info given an identifier'
-  pending 'should get revision in document info given an identifier'
-  pending 'should get created_at in document info given an identifier'
-  pending 'should get type in document info given an identifier'
-  pending 'should get identifier in document info given an identifier'
+  it 'should return 404 if document does not exists' do
+    get '/api/z_items/fake_id'
+
+    expect(response.status).to eq(404)
+  end
+
+  context 'get single item' do
+    before(:all) {
+      get "/api/z_items/#{@sub_doc1.identifier}"
+    }
+
+    it 'should have all attributes' do
+      check_attributes_for_item_info(json)
+    end
+  end
 
   pending 'should be possible to get only document info without data'
   pending 'should be possible to get document data and info in a single request'

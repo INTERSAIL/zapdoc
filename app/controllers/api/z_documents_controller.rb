@@ -9,5 +9,14 @@ module Api
         render json: ZItemInfo.from_z_item(documents), status: 200
       end
     end
+
+    def show
+      document = ZDocument.find_by(identifier: params[:id])
+      if document
+        render json: ZDocumentInfo.from_z_item(document), status: 200
+      else
+        render json: {error: 'Item not found'}, status: 404
+      end
+    end
   end
 end
