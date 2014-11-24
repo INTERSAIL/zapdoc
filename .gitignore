@@ -16,3 +16,5 @@
 /tmp
 repository/*/
 /.idea
+node_modules
+.idea
