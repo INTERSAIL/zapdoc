@@ -15,6 +15,6 @@
 /log/*.log
 /tmp
 repository/*/
-/.idea
+.idea
 node_modules
 .idea
