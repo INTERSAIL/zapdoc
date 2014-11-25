@@ -38,10 +38,13 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   config.before(:all) do
+    # example directory structure:
     # - ROOT
     # -- ROOT:1
     # -- ROOT:SUB1
     # --- SUB1:1
+    # -- ROOT:SUB2
+
     ZItem.destroy_all
 
     @root = ZFolder.root
