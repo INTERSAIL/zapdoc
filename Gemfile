@@ -37,7 +37,7 @@ gem 'spring',        group: :development
 
 group :test do
   gem 'rspec-rails'
-  # gem 'shoulda-matchers'
+  gem 'shoulda-matchers'
   #gem 'mongoid-rspec'
   # gem 'mongoid4-rspec'
 end

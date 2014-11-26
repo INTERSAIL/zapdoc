@@ -1,20 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe ZItem, :type => :model do
-  it { should respond_to :identifier }
-  xit { should respond_to :label }
-  xit { should respond_to :format_identifier }
-  xit { should respond_to :mime_type }
+  it_behaves_like 'an item'
 
-  xit { should validate_presence_of :identifier }
-  xit { should validate_uniqueness_of :identifier }
+  #@jtodo validate label and revision check
 
-  xit 'should have a default identifier' do
-    i = ZItem.new
-    expect(i.identifier).to_not be_nil
-  end
-
-  xit 'should have revision 1 on creation' do
+  it 'should have revision 1 on creation' do
     i = ZItem.create(label: '1')
     expect(i.revision).to eq(1)
   end
@@ -42,4 +33,6 @@ RSpec.describe ZItem, :type => :model do
     i = ZItem.create(label: '1')
     expect(i.folder.identifier).to eq(ZFolder.root.identifier)
   end
+
+  #@jtodo handle the first and last with timestamp
 end
