@@ -8,9 +8,8 @@ require "action_mailer/railtie"
 require "action_view/railtie"
 require "sprockets/railtie"
 
-# require "rails/test_unit/railtie"
-
-#require 'rails/all'
+#@jtodo comment here when swap to rspec and set that as default task then
+require "rails/test_unit/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
