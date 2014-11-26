@@ -1,10 +1,9 @@
 class CreateZItems < ActiveRecord::Migration
   def up
-    create_table :z_items do |t|
-      t.uuid :id
+    create_table :z_items, id: :uuid do |t|
       t.string :label
       t.hstore :custom_attributes
-      t.array :tags
+      t.text :tags, array: true, default: []
       t.integer :revision
       t.string :format_identifier
       t.string :mime_type

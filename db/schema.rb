@@ -11,11 +11,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126133421) do
+ActiveRecord::Schema.define(version: 20141126141019) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
   enable_extension "hstore"
+
+  create_table "z_document_infos", force: true do |t|
+    t.string   "label"
+    t.string   "revision"
+    t.string   "type"
+    t.string   "format_identifier"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "z_documents", force: true do |t|
+    t.string   "filename"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "z_folders", force: true do |t|
+    t.boolean  "is_root"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "z_formats", force: true do |t|
+    t.string   "description"
+    t.string   "mime_type"
+    t.text     "accepted_extensions", default: [], array: true
+    t.boolean  "default"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "z_histories", force: true do |t|
+    t.datetime "history_date"
+    t.uuid     "zitem_id"
+    t.integer  "revision"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "z_item_infos", force: true do |t|
+    t.string   "label"
+    t.string   "identifier"
+    t.string   "revision"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "z_items", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.string   "label"
+    t.hstore   "custom_attributes"
+    t.text     "tags",              default: [], array: true
+    t.integer  "revision"
+    t.string   "format_identifier"
+    t.string   "mime_type"
+    t.integer  "folder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
