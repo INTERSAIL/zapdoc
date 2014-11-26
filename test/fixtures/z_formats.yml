@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  description: MyString
+  mime_type: MyString
+  accepted_extensions: 
+  default: false
+
+two:
+  id: 
+  description: MyString
+  mime_type: MyString
+  accepted_extensions: 
+  default: false
