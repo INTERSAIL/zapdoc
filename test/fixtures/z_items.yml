@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  label: MyString
+  custom_attributes: 
+  tags: 
+  revision: 1
+  format_identifier: MyString
+  mime_type: MyString
+  folder_id: 1
+
+two:
+  id: 
+  label: MyString
+  custom_attributes: 
+  tags: 
+  revision: 1
+  format_identifier: MyString
+  mime_type: MyString
+  folder_id: 1
