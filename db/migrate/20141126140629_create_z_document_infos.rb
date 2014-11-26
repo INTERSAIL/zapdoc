@@ -1,5 +1,5 @@
 class CreateZDocumentInfos < ActiveRecord::Migration
-  def change
+  def up
     create_table :z_document_infos do |t|
       t.string :label
       t.string :revision
@@ -8,5 +8,9 @@ class CreateZDocumentInfos < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+
+  def down
+    drop_table :z_document_infos
   end
 end

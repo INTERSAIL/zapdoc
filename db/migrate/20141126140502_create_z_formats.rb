@@ -1,5 +1,5 @@
 class CreateZFormats < ActiveRecord::Migration
-  def change
+  def up
     create_table :z_formats do |t|
       t.string :description
       t.string :mime_type
@@ -8,5 +8,9 @@ class CreateZFormats < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+
+  def down
+    drop_table :z_formats
   end
 end

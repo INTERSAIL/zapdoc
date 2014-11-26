@@ -1,5 +1,5 @@
 class CreateZItemInfos < ActiveRecord::Migration
-  def change
+  def up
     create_table :z_item_infos do |t|
       t.string :label
       t.string :identifier
@@ -8,5 +8,9 @@ class CreateZItemInfos < ActiveRecord::Migration
 
       t.timestamps
     end
+  end
+
+  def down
+    drop_table :z_item_infos
   end
 end

@@ -6,6 +6,7 @@ class ZItem < ActiveRecord::Base
   before_save :historicize
   #@jtodo test models with rspec
 
+  has_many :z_history
   #@jtodo add getter for identifier that gives the id for backward compatibility
 
   # validates :label, presence: true

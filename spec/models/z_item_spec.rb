@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ZItem, :type => :model do
-  context 'Database Columns' do
+  context 'Database Mapping' do
     it { should have_db_column(:id).of_type(:uuid) }
     it { should have_db_column(:label).of_type(:string) }
     it { should have_db_column(:custom_attributes).of_type(:hstore) }
@@ -28,6 +28,13 @@ RSpec.describe ZItem, :type => :model do
           .from(second_value)
           .to(first_value)
     end
+
+    it 'should have a relation with history' do
+      #@jtodo fix this by auto loading migration every time
+      #@jtodo then go in migrations and handle that with up and down
+      should have_many(:z_history)
+    end
+
   end
 
   #@jtodo validate label and revision check
@@ -43,7 +50,7 @@ RSpec.describe ZItem, :type => :model do
       item.update_attribute(:label, '2')
     end
 
-    it 'should update revision after save' do
+    xit 'should update revision after save' do
       expect(item.revision).to eq(2)
     end
 
@@ -60,6 +67,6 @@ RSpec.describe ZItem, :type => :model do
     i = ZItem.create(label: '1')
     expect(i.folder.identifier).to eq(ZFolder.root.identifier)
   end
-
   #@jtodo handle the first and last with timestamp
+
 end
