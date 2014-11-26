@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  history_date: 2014-11-26 15:10:19
+  zitem_id: 1
+  revision: 1
+
+two:
+  id: 
+  history_date: 2014-11-26 15:10:19
+  zitem_id: 1
+  revision: 1
