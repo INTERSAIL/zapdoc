@@ -15,7 +15,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -47,20 +47,20 @@ RSpec.configure do |config|
 
     ZItem.destroy_all
 
-    @root = ZFolder.root
-    @root_doc1 = @root.documents.create(label: 'ROOT:1', format_identifier: :txt, data: 'Hello world!')
-
-    @sub = @root.folders.create!(label: 'ROOT:SUB1')
-    @sub_doc1 = @sub.documents.create!(label: 'SUB1:1', format_identifier: :txt, data: 'Hello world!')
-
-    @sub2 = @root.folders.create(label: 'ROOT:SUB2')
+    # @root = ZFolder.root
+    # @root_doc1 = @root.documents.create(label: 'ROOT:1', format_identifier: :txt, data: 'Hello world!')
+    #
+    # @sub = @root.folders.create!(label: 'ROOT:SUB1')
+    # @sub_doc1 = @sub.documents.create!(label: 'SUB1:1', format_identifier: :txt, data: 'Hello world!')
+    #
+    # @sub2 = @root.folders.create(label: 'ROOT:SUB2')
   end
 
   config.after(:all) do
     FileUtils.rm_f(Dir[File.join(ZapDoc.config.repository.path, '[^.]*')])
   end
 
-  config.include Requests::JsonHelpers, type: :request
+  # config.include Requests::JsonHelpers, type: :request
 end
 
-Rails.application.load_seed
+# Rails.application.load_seed
