@@ -1,14 +1,15 @@
 class ZItem < ActiveRecord::Base
+  #@jtodoIMP handle the first and last with timestamp
 
   alias_attribute :identifier, :id
 
   # after_initialize :set_defaults
   before_save :historicize
-  #@jtodo test models with rspec
 
   has_many :z_history, dependent: :destroy
   alias histories z_history
-  #@jtodo add getter for identifier that gives the id for backward compatibility
+
+  #@jtodoIMP add getter for identifier that gives the id for backward compatibility
 
   validates :label, presence: true
   validates :revision, numericality: true, presence: true, unless: ->{ self.new_record? }

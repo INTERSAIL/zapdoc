@@ -6,7 +6,7 @@ module Helpers
         second_value = 2
 
         # first value to second value
-        puts actual.send("#{original_name}=", first_value)
+        actual.send("#{original_name}=", first_value)
         expect { actual.send("#{alias_name}=", second_value) }
         .to change { actual.send(original_name) }
             .from(first_value)

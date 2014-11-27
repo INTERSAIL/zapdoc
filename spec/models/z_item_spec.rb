@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ZItem, :type => :model do
-  include Helpers::ActiveRecord
-
   context 'Database Mapping' do
     it { should have_db_column(:id).of_type(:uuid) }
     it { should have_db_column(:label).of_type(:string) }
@@ -14,11 +12,11 @@ RSpec.describe ZItem, :type => :model do
     it { should have_db_column(:folder_id).of_type(:integer) }
 
     it 'should have an id alias to identifier' do
-      #@jtodo! extract this code to assert for alias_attribute
-      #@jtodo! then make a test for also ruby alias
-      #@jtodo! handle the first and last with timestamp
-
       should have_an_alias_attribute(:id,:identifier)
+    end
+
+    it 'should have an alias for z_history named history' do
+      should have_an_alias(:z_history, :history)
     end
 
     it 'should have a relation with history' do
@@ -36,9 +34,8 @@ RSpec.describe ZItem, :type => :model do
     end
   end
 
-
-  #@jtodo_ here you can see that all thoose responsability
-  #@jtodo_ should be putted in a revision class asap to keep it Solid
+  #@jtodoMED here you can see that all thoose responsability
+  #@jtodoMED should be putted in a revision class asap to keep it Solid
   context 'revisions' do
     it 'should have revision 1 on creation' do
       item = ZItem.create(label: '1')
@@ -59,7 +56,7 @@ RSpec.describe ZItem, :type => :model do
         expect(item.histories.count).to eq(1)
       end
 
-      #@jtodo! move this to the history test
+      #@jtodoIMP move this to the history test
       it 'should have revision 1 in history' do
         pending
         expect(item.histories.first.revision).to eq(1)
@@ -67,7 +64,7 @@ RSpec.describe ZItem, :type => :model do
     end
   end
 
-  #@jtodo! fix this in the end
+  #@jtodoIMP fix this in the end
   it 'should have a default folder' do
     pending
     item = ZItem.create(label: '1')
