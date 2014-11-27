@@ -38,6 +38,7 @@ gem 'spring',        group: :development
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'database_cleaner'
   #gem 'mongoid-rspec'
   # gem 'mongoid4-rspec'
 end

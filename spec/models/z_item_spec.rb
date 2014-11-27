@@ -31,7 +31,6 @@ RSpec.describe ZItem, :type => :model do
 
     it 'should have a relation with history' do
       #@jtodo fix this by auto loading migration every time
-      #@jtodo then go in migrations and handle that with up and down
       should have_many(:z_history)
     end
 
