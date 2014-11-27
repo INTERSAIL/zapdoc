@@ -8,18 +8,32 @@ RSpec.describe ZHistory, :type => :model do
     it { should have_db_column(:revision).of_type(:integer) }
     it { should have_timestamps }
 
-    #@jtodoIMP fix test
     it 'should have a relation with history' do
       pending
-      should have_many(:z_history).dependent(:destroy)
+      should belongs_to(:z_item)
+    end
+
+    it 'should validate presence of item' do
+      should validate_presence_of(:z_item)
+    end
+
+    it 'should validate revision' do
+      should validate_presence_of(:revision)
+      should validate_numericality_of(:revision)
     end
   end
 
   context 'revision' do
-    #@jtodoIMP move this to the history test
-    it 'should have revision 1 in history' do
-      pending
-      expect(item.histories.first.revision).to eq(1)
+    it 'should have equal revision of his item' do
+      item = ZItem.create(label: '1', revision: 12)
+      history = ZHistory.create(z_item: item)
+      expect(history.revision).to eq(item.revision)
     end
+  end
+
+  it 'should save timestamp on creation' do
+    pending
+    #@jtodoIMP check that set history_date to Time.now
+    expect{subject.save}.to()
   end
 end

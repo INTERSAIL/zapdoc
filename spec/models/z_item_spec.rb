@@ -57,7 +57,7 @@ RSpec.describe ZItem, :type => :model do
         expect(item.histories.count).to eq(1)
       end
 
-      #@jtodoIMP move this to the history test
+      #@jtodoIMP here just test that creates a zitem of item
       it 'should have revision 1 in history' do
         pending
         expect(item.histories.first.revision).to eq(1)
