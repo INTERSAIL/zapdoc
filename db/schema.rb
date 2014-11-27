@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20141126141019) do
 
   create_table "z_histories", force: true do |t|
     t.datetime "history_date"
-    t.uuid     "zitem_id"
+    t.uuid     "z_item_id"
     t.integer  "revision"
     t.datetime "created_at"
     t.datetime "updated_at"

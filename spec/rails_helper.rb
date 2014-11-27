@@ -29,7 +29,9 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
-
+  # Database handling
+  # migrate test schema if needed
+  ActiveRecord::Migrator.migrate(File.join(Rails.root, 'db/migrate'))
   # Clean database at start of the suite and then
   # just uses transactions
   config.before(:suite) do

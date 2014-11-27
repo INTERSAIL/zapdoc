@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe ZItem, :type => :model do
+  include Helpers::ActiveRecord
+
   context 'Database Mapping' do
     it { should have_db_column(:id).of_type(:uuid) }
     it { should have_db_column(:label).of_type(:string) }
@@ -16,21 +18,7 @@ RSpec.describe ZItem, :type => :model do
       #@jtodo! then make a test for also ruby alias
       #@jtodo! handle the first and last with timestamp
 
-      first_value = 1
-      second_value = 2
-
-      # first value to second value
-      subject.id = first_value
-      expect { subject.identifier = second_value }
-      .to change { subject.id }
-          .from(first_value)
-          .to(second_value)
-
-      #second value to first value
-      expect { subject.id = first_value }
-      .to change { subject.identifier }
-          .from(second_value)
-          .to(first_value)
+      should have_an_alias_attribute(:id,:identifier)
     end
 
     it 'should have a relation with history' do
@@ -49,8 +37,8 @@ RSpec.describe ZItem, :type => :model do
   end
 
 
-  #@jtodo_ here you can see that all theese responsability
-  #@jtodo_ should be putted in a revision class
+  #@jtodo_ here you can see that all thoose responsability
+  #@jtodo_ should be putted in a revision class asap to keep it Solid
   context 'revisions' do
     it 'should have revision 1 on creation' do
       item = ZItem.create(label: '1')
