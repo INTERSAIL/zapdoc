@@ -19,5 +19,12 @@ module Helpers
             .to(first_value)
       end
     end
+
+    RSpec::Matchers.define :have_timestamps do
+      match do |actual|
+        expect(actual).to(have_db_column(:created_at).of_type(:datetime))
+        expect(actual).to(have_db_column(:updated_at).of_type(:datetime))
+      end
+    end
   end
 end

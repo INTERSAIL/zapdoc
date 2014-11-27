@@ -1,18 +1,19 @@
 class ZItem < ActiveRecord::Base
-  #@jtodoIMP handle the first and last with timestamp
-
-  alias_attribute :identifier, :id
-
-  # after_initialize :set_defaults
-  before_save :historicize
-
+  # relations
   has_many :z_history, dependent: :destroy
-  alias histories z_history
 
-  #@jtodoIMP add getter for identifier that gives the id for backward compatibility
+  # event hooks
+  before_save :historicize
+  # after_initialize :set_defaults
 
+  # validation
   validates :label, presence: true
   validates :revision, numericality: true, presence: true, unless: ->{ self.new_record? }
+
+  # aliases
+  alias_attribute :identifier, :id
+  alias histories z_history
+
   #
   #@jtodo check for test of this
   # def self.in_folder(folder)
@@ -34,4 +35,6 @@ class ZItem < ActiveRecord::Base
 
     ZHistory.create(z_item: ZItem.find(self.id)) unless self.new_record?
   end
+
+  #@jtodoLOW handle the first and last with timestamp because of uuid as id
 end

@@ -10,6 +10,7 @@ RSpec.describe ZItem, :type => :model do
     it { should have_db_column(:format_identifier).of_type(:string) }
     it { should have_db_column(:mime_type).of_type(:string) }
     it { should have_db_column(:folder_id).of_type(:integer) }
+    it { should have_timestamps }
 
     it 'should have an id alias to identifier' do
       should have_an_alias_attribute(:id,:identifier)
@@ -34,9 +35,9 @@ RSpec.describe ZItem, :type => :model do
     end
   end
 
-  #@jtodoMED here you can see that all thoose responsability
-  #@jtodoMED should be putted in a revision class asap to keep it Solid
-  context 'revisions' do
+  #@jtodoLOW here you can see that all thoose responsability
+  #@jtodoLOW should be putted in a revision class asap to keep it Solid
+  context 'revision' do
     it 'should have revision 1 on creation' do
       item = ZItem.create(label: '1')
       expect(item.revision).to eq(1)
