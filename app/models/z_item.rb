@@ -6,7 +6,7 @@ class ZItem < ActiveRecord::Base
   before_save :historicize
   #@jtodo test models with rspec
 
-  has_many :z_history
+  has_many :z_history, dependent: :destroy
   #@jtodo add getter for identifier that gives the id for backward compatibility
 
   # validates :label, presence: true
@@ -30,10 +30,10 @@ class ZItem < ActiveRecord::Base
   # end
 
   def historicize
+    #@jtodo extract this logic into class
     self.revision = self.revision.nil? ? 1 : self.revision + 1
 
-    #@jtodo handle relation here
-    ZHistory.create(item: ZItem.find(self.id)) unless self.new_record?
+    ZHistory.create(z_item: ZItem.find(self.id)) unless self.new_record?
   end
 
 end

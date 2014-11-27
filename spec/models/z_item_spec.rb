@@ -12,6 +12,7 @@ RSpec.describe ZItem, :type => :model do
     it { should have_db_column(:folder_id).of_type(:integer) }
 
     it 'have an id alias to identifier' do
+      #@jtodo extract this code to assert for alias
       first_value = 1
       second_value = 2
 
@@ -30,8 +31,7 @@ RSpec.describe ZItem, :type => :model do
     end
 
     it 'should have a relation with history' do
-      #@jtodo fix this by auto loading migration every time
-      should have_many(:z_history)
+      should have_many(:z_history).dependent(:destroy)
     end
 
   end
@@ -49,7 +49,7 @@ RSpec.describe ZItem, :type => :model do
       item.update_attribute(:label, '2')
     end
 
-    xit 'should update revision after save' do
+    it 'should update revision after save' do
       expect(item.revision).to eq(2)
     end
 
