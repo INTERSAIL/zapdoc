@@ -32,8 +32,7 @@ RSpec.describe ZHistory, :type => :model do
   end
 
   it 'should save timestamp on creation' do
-    pending
-    #@jtodoIMP check that set history_date to Time.now
-    expect{subject.save}.to()
+    expect{subject.save}.to change { subject.history_date }
+      .to( be_within(2).of(Time.now))
   end
 end

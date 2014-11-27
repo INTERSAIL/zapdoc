@@ -13,7 +13,7 @@ class ZHistory < ActiveRecord::Base
 
   def set_defaults
     self.revision = self.z_item.revision unless self.z_item.nil?
-    # self.history_date = Time.now
+    self.history_date = Time.now
   end
 
 end
