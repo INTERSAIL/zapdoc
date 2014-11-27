@@ -33,12 +33,14 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# gem 'mongoid', '~> 4.0.0'
-
+#testing
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'database_cleaner'
-  #gem 'mongoid-rspec'
-  # gem 'mongoid4-rspec'
+end
+
+# development
+group :development do
+  gem 'pry-rails'
 end

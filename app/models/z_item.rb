@@ -15,7 +15,7 @@ class ZItem < ActiveRecord::Base
   alias histories z_history
 
   #
-  #@jtodo check for test of this
+  #@jtodoIMP check for test of this
   # def self.in_folder(folder)
   #   self.where(folder: folder)
   # end

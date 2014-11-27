@@ -63,7 +63,7 @@ RSpec.describe ZItem, :type => :model do
     end
   end
 
-  #@jtodoIMP fix this in the end
+  #@jtodoIMP now test folder then test this dependency with instance variable and not static calls thopry
   xit 'should have a default folder' do
     item = ZItem.create(label: '1')
     expect(item.folder.identifier).to eq(ZFolder.root.identifier)
