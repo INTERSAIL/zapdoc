@@ -78,7 +78,7 @@ RSpec.describe ZItem, :type => :model do
     it 'should have a default folder', test: true do
       item = ZItem.create(label: '1')
       expect(item.z_item).to eq(item.hierarchy.root)
+      #@jtodoIMP finish zfolder then finish item
     end
   end
-
 end

@@ -41,7 +41,6 @@ class ZItem < ActiveRecord::Base
 
   def historicize
     self.revision = self.revision.nil? ? 1 : self.revision + 1
-
     ZHistory.create(z_item: ZItem.find(self.id)) unless self.new_record?
   end
 
