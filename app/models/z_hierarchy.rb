@@ -6,7 +6,6 @@ class ZHierarchy < ActiveRecord::Base
   end
 
   def root
-    validate_folder
     find_root || new_root
   end
 
@@ -19,12 +18,8 @@ class ZHierarchy < ActiveRecord::Base
   end
 
   def root?
-    validate_folder
+    return false unless self.item.is_a? folder
     self.item.folder.nil?
-  end
-
-  def validate_folder
-    raise ArgumentError, "expected: #{folder.name} as item, got: #{self.item.class}" unless self.item.is_a? folder || self.item.folder.nil?
   end
 
   def folder
@@ -32,7 +27,14 @@ class ZHierarchy < ActiveRecord::Base
   end
 
   def default
-    root unless find_root.nil?
-    find_root
+    if root?
+      return nil
+    end
+
+    if find_root
+      return find_root
+    end
+
+    root
   end
 end

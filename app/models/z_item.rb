@@ -36,8 +36,9 @@ class ZItem < ActiveRecord::Base
 
   def set_defaults
     self.hierarchy = ZHierarchy.new item: self
-    #@jtodoIMP implement that in hierarchy
-    # self.folder ||= ZFolder.root unless (self.respond_to?(:root?) && self.root?)
+    # puts self.hierarchy.default.inspect
+    #
+    # self.z_item = self.hierarchy.default
   end
 
   def historicize

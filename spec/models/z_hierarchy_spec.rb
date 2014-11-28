@@ -11,13 +11,9 @@ describe ZHierarchy, type: :model do
     expect(@hierarchy.item).to be_equal(@item)
   end
 
-  context 'with root folder' do
-    it 'should respond to root only if you pass a folder as item' do
-      expect{@hierarchy.root}.to raise_error(ArgumentError)
-    end
-
-    it 'should respond to root? only if you pass a folder as item' do
-      expect{@hierarchy.root?}.to raise_error(ArgumentError)
+  context 'root folders' do
+    it "should return false on root? if it's not a folder" do
+      expect(@hierarchy.root?).to be_equal false
     end
 
     context 'with root folder' do
@@ -39,17 +35,23 @@ describe ZHierarchy, type: :model do
 
       context 'default folder' do
         it 'should return root folder' do
+          @hierarchy.item = @item
           expect(@hierarchy.default).to be == @root
         end
 
-        it "should return self if he's the root" do
+        it "should return nil if he's the root" do
           @hierarchy.item = @root
-          expect(@hierarchy.default).to be == @root
+          expect(@hierarchy.default).to be == nil
         end
       end
     end
 
     context 'without root folder' do
+      before(:each) do
+         @hierarchy.folder.where(z_item_id: nil).destroy_all
+        @hierarchy.item = @item
+      end
+
       it 'should return a new root folder' do
         expect(@hierarchy.root).to satisfy do |folder|
           folder.hierarchy.root? == true
@@ -68,6 +70,4 @@ describe ZHierarchy, type: :model do
   context 'folder structure' do
     xit "should check if it's in a folder"
   end
-
-  #@jtodoIMP finish this then put as mock to the folder class
 end

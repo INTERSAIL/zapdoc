@@ -75,10 +75,9 @@ RSpec.describe ZItem, :type => :model do
       expect(subject.hierarchy.item).to be_equal(subject)
     end
 
-    #@jtodoIMP now test folder then test this dependency with instance variable and not static calls
-    xit 'should have a default folder' do
+    it 'should have a default folder', test: true do
       item = ZItem.create(label: '1')
-      expect(item.folder.identifier).to eq(ZFolder.root.identifier)
+      # expect(item.z_item).to eq(item.hierarchy.root)
     end
   end
 
