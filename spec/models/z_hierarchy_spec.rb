@@ -6,13 +6,19 @@ describe ZHierarchy, type: :model do
     @hierarchy = ZHierarchy.new item: @item
   end
 
-  it 'could be created with an item' do
+  it 'can be created with an item' do
     @hierarchy = ZHierarchy.new item: @item
     expect(@hierarchy.item).to be_equal(@item)
   end
 
   context 'with root folder' do
-    xit 'respond to root and root? folder methods only if you pass a folder'
+    it 'should respond to root only if you pass a folder as item' do
+      expect{@hierarchy.root}.to raise_error(ArgumentError)
+    end
+
+    it 'should respond to root? only if you pass a folder as item' do
+      expect{@hierarchy.root?}.to raise_error(ArgumentError)
+    end
 
     context 'with root folder' do
       before(:all) do
@@ -24,7 +30,7 @@ describe ZHierarchy, type: :model do
         expect(@hierarchy.root).to be == @root
       end
 
-      it "should obtain if it's the root folder " do
+      it "should obtain if it's the root folder ", test: :true do
         expect(@hierarchy.root?).to be_equal true
 
         @hierarchy.item = @hierarchy.folder.create z_item: @root
@@ -59,11 +65,9 @@ describe ZHierarchy, type: :model do
     end
   end
 
-
   context 'folder structure' do
     xit "should check if it's in a folder"
   end
 
   #@jtodoIMP finish this then put as mock to the folder class
-
 end
