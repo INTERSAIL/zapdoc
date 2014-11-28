@@ -6,7 +6,7 @@ class ZHierarchy < ActiveRecord::Base
   end
 
   def root?
-    self.item.folder_id.nil?
+    self.item.folder.nil?
   end
 
   def folder

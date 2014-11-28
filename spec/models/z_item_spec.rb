@@ -25,9 +25,9 @@ RSpec.describe ZItem, :type => :model do
       should have_many(:z_history).dependent(:destroy)
     end
 
-    it 'should have a relation with contained_in to itself' do
+    it 'should have a relation with folder to itself' do
       should belong_to(:z_item)
-      should have_an_alias(:z_item, :contained_in)
+      should have_an_alias(:z_item, :folder)
     end
 
     it 'should validate presence of label' do

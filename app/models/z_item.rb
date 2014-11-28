@@ -18,7 +18,7 @@ class ZItem < ActiveRecord::Base
   # aliases
   alias_attribute :identifier, :id
   alias histories z_history
-  alias contained_in z_item
+  alias folder z_item
 
   #
   #@jtodoIMP put this in hierarchy

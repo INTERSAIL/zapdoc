@@ -22,9 +22,9 @@ describe ZHierarchy, type: :model do
       root_folder = ZFolder.create label: ZFolder.root_label
       hierarchy.item = root_folder
       expect(hierarchy.root?).to be_equal true
-      hierarchy.item = ZFolder.create folder_id: root_folder.id
+      hierarchy.item = ZFolder.create z_item: root_folder
       expect(hierarchy.root?).to be_equal false
-      #@jtodoIMP fix this then fix the folder_id and instead use contained_in
+      #@jtodoIMP fix this
     end
 
     xit 'respond to folder methods only if you pass a folder' #handle error
