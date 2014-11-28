@@ -1,34 +1,41 @@
 require 'rails_helper'
 
 describe ZHierarchy, type: :model do
-  let(:item) { ZItem.new }
-  let(:hierarchy) { ZHierarchy.new item: item }
-
-  it 'can be created with an item' do
-    hierarchy = ZHierarchy.new item: item
-    expect(hierarchy.item).to be_equal(item)
+  before(:all) do
+    @item = ZItem.new
+    @hierarchy = ZHierarchy.new item: @item
   end
 
-  context 'root folder' do
-    it 'should return a new root folder if does not exists' do #root
-      # expect(hierarchy.root).to satisfy {|folder| folder.root? == true}
-    end
+  it 'could be created with an item' do
+    @hierarchy = ZHierarchy.new item: @item
+    expect(@hierarchy.item).to be_equal(@item)
+  end
 
-    xit 'should return the root folder if exists' do #root
-
-    end
-
-    it "should obtain if it's the root folder " do
-      root_folder = ZFolder.create label: ZFolder.root_label
-      hierarchy.item = root_folder
-      expect(hierarchy.root?).to be_equal true
-      hierarchy.item = ZFolder.create z_item: root_folder
-      expect(hierarchy.root?).to be_equal false
-      #@jtodoIMP fix this
-    end
-
+  context 'root folders' do
     xit 'respond to folder methods only if you pass a folder' #handle error
 
+    context 'with root folder' do
+      before(:all) do
+        @root = ZFolder.create label: ZFolder.root_label, z_item: nil
+        @hierarchy.item = @root
+      end
+
+      it 'should return root folder' do
+        expect(@hierarchy.root).to be == @root
+      end
+
+      it "should obtain if it's the root folder " do
+        expect(@hierarchy.root?).to be_equal true
+
+        @hierarchy.item = ZFolder.create z_item: @root
+        expect(@hierarchy.root?).to be_equal false
+      end
+    end
+    context 'without root folder' do
+      it 'should return a new root folder' do
+        expect(@hierarchy.root).to satisfy {|folder| folder.hierarchy.root? == true}
+      end
+    end
   end
 
   context 'default folder' do
@@ -40,4 +47,5 @@ describe ZHierarchy, type: :model do
     it "should check if it's in a folder"
   end
 
+  #@jtodoIMP finish this then put as mock to the folder class
 end

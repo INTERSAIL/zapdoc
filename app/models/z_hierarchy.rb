@@ -5,12 +5,16 @@ class ZHierarchy < ActiveRecord::Base
     ZItem.table_name
   end
 
+  def root
+    folder.find_by(z_item_id: nil) || folder.create!(label: root_label)
+  end
+
   def root?
     self.item.folder.nil?
   end
 
   def folder
-    ZFolder.new
+    ZFolder
   end
 
 
