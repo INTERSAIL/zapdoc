@@ -8,6 +8,8 @@ class CreateZItems < ActiveRecord::Migration
       t.string :format_identifier
       t.string :mime_type
       t.integer :folder_id
+      # for STI
+      t.string :type
 
       t.timestamps
     end

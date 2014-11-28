@@ -1,4 +1,4 @@
-class ZFolder < ActiveRecord::Base
+class ZFolder < ZItem
   # class UniqueRootValidator < ActiveModel::EachValidator
   #   def validate_each(record, attribute, value)
   #     record.errors.add attribute, (options[:message] || 'Cannot have two root folders') if value && ZFolder.find_by(is_root: true)

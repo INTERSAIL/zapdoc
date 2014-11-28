@@ -4,6 +4,7 @@ class CreateZItemInfos < ActiveRecord::Migration
       t.string :label
       t.string :identifier
       t.string :revision
+      #@jtodoIMP rename because it's reserved for STI
       t.string :type
 
       t.timestamps

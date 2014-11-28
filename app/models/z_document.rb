@@ -1,2 +1,2 @@
-class ZDocument < ActiveRecord::Base
+class ZDocument < ZItem
 end

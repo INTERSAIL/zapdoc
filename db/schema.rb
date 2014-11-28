@@ -33,12 +33,6 @@ ActiveRecord::Schema.define(version: 20141126141019) do
     t.datetime "updated_at"
   end
 
-  create_table "z_folders", force: true do |t|
-    t.boolean  "is_root"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "z_formats", force: true do |t|
     t.string   "description"
     t.string   "mime_type"
@@ -73,6 +67,7 @@ ActiveRecord::Schema.define(version: 20141126141019) do
     t.string   "format_identifier"
     t.string   "mime_type"
     t.integer  "folder_id"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

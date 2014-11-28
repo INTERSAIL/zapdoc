@@ -10,6 +10,7 @@ RSpec.describe ZItem, :type => :model do
     it { should have_db_column(:format_identifier).of_type(:string) }
     it { should have_db_column(:mime_type).of_type(:string) }
     it { should have_db_column(:folder_id).of_type(:integer) }
+    it { should have_db_column(:type).of_type(:string) }
     it { should have_timestamps }
 
     it 'should have an id alias to identifier' do
