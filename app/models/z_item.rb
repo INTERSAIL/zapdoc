@@ -36,9 +36,7 @@ class ZItem < ActiveRecord::Base
 
   def set_defaults
     self.hierarchy = ZHierarchy.new item: self
-    # puts self.hierarchy.default.inspect
-    #
-    # self.z_item = self.hierarchy.default
+    self.z_item = self.hierarchy.default
   end
 
   def historicize

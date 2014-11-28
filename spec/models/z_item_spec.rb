@@ -77,7 +77,7 @@ RSpec.describe ZItem, :type => :model do
 
     it 'should have a default folder', test: true do
       item = ZItem.create(label: '1')
-      # expect(item.z_item).to eq(item.hierarchy.root)
+      expect(item.z_item).to eq(item.hierarchy.root)
     end
   end
 
