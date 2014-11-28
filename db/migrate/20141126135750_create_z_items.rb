@@ -7,7 +7,7 @@ class CreateZItems < ActiveRecord::Migration
       t.integer :revision
       t.string :format_identifier
       t.string :mime_type
-      t.integer :folder_id
+      t.integer :z_item_id
       # for STI
       t.string :type
 

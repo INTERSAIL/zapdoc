@@ -9,8 +9,8 @@ RSpec.describe ZItem, :type => :model do
     it { should have_db_column(:revision).of_type(:integer) }
     it { should have_db_column(:format_identifier).of_type(:string) }
     it { should have_db_column(:mime_type).of_type(:string) }
-    it { should have_db_column(:folder_id).of_type(:integer) }
-    it { should have_db_column(:type).of_type(:string) }
+    it { should have_db_column(:z_item_id).of_type(:integer) }
+    it { should implement_sti }
     it { should have_timestamps }
 
     it 'should have an id alias to identifier' do
@@ -18,11 +18,16 @@ RSpec.describe ZItem, :type => :model do
     end
 
     it 'should have an alias for z_history named history' do
-      should have_an_alias(:z_history, :history)
+      should have_an_alias(:z_history, :histories)
     end
 
     it 'should have a relation with history' do
       should have_many(:z_history).dependent(:destroy)
+    end
+
+    it 'should have a relation with contained_in to itself' do
+      should belong_to(:z_item)
+      should have_an_alias(:z_item, :contained_in)
     end
 
     it 'should validate presence of label' do
@@ -64,10 +69,17 @@ RSpec.describe ZItem, :type => :model do
     end
   end
 
-  #@jtodoIMP now test folder then test this dependency with instance variable and not static calls thopry
-  xit 'should have a default folder' do
-    item = ZItem.create(label: '1')
-    expect(item.folder.identifier).to eq(ZFolder.root.identifier)
+  context 'hierarchy mapping' do
+    it 'should be initialized with ZHierarchy as default' do
+      expect(subject.hierarchy).to be_instance_of(ZHierarchy)
+      expect(subject.hierarchy.item).to be_equal(subject)
+    end
+
+    #@jtodoIMP now test folder then test this dependency with instance variable and not static calls
+    xit 'should have a default folder' do
+      item = ZItem.create(label: '1')
+      expect(item.folder.identifier).to eq(ZFolder.root.identifier)
+    end
   end
 
 end

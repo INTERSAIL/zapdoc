@@ -26,5 +26,11 @@ module Helpers
         expect(actual).to(have_db_column(:updated_at).of_type(:datetime))
       end
     end
+
+    RSpec::Matchers.define :implement_sti do
+      match do |actual|
+        expect(actual).to(have_db_column(:type).of_type(:string))
+      end
+    end
   end
 end
