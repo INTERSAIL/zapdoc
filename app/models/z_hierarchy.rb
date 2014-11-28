@@ -6,7 +6,15 @@ class ZHierarchy < ActiveRecord::Base
   end
 
   def root
-    folder.find_by(z_item_id: nil) || folder.create!(label: root_label)
+    find_root || new_root
+  end
+
+  def new_root
+    folder.create!(label: folder.root_label)
+  end
+
+  def find_root
+    folder.find_by(z_item_id: nil)
   end
 
   def root?
@@ -17,5 +25,8 @@ class ZHierarchy < ActiveRecord::Base
     ZFolder
   end
 
-
+  def default
+    root unless find_root.nil?
+    find_root
+  end
 end
