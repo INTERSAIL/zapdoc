@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ZFolder, type: :model do
 
   #@jtodoIMP test for unique root and is_root
+
   it 'has root_label' do
     expect(ZFolder.root_label).not_to be_empty
   end

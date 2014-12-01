@@ -1,5 +1,9 @@
 require 'rails_helper'
 
+def clearFolders
+  ZFolder.destroy_all
+end
+
 describe ZHierarchy, type: :model do
   before(:all) do
     @item = ZItem.new
@@ -18,6 +22,7 @@ describe ZHierarchy, type: :model do
 
     context 'with root folder' do
       before(:all) do
+        clearFolders
         @root = @hierarchy.folder.create label: @hierarchy.folder.root_label, z_item: nil
         @hierarchy.item = @root
       end
@@ -47,6 +52,9 @@ describe ZHierarchy, type: :model do
     end
 
     context 'without root folder' do
+      before(:all) do
+        clearFolders
+      end
       before(:each) do
         @hierarchy.folder.where(z_item_id: nil).destroy_all
         @hierarchy.item = @item
