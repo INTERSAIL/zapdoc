@@ -1,5 +1,5 @@
 class ZDocument < ZItem
-  #@jtodoIMP
+  #@jtodoIMP then finish folder
   # after_destroy :delete_file
   #
   # field :filename, type: String

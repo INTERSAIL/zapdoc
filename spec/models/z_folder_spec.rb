@@ -34,7 +34,7 @@ RSpec.describe ZFolder, type: :model do
     end
   end
 
-  #@jtodoIMP the document structure creation
+  #@jtodoIMP the document structure creation then do the history
   # context 'should have documents' do
   #   before(:all) do
   #     ZItem.destroy_all

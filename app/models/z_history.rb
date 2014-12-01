@@ -1,4 +1,5 @@
 class ZHistory < ActiveRecord::Base
+  #@jtodoIMP finish chekc here then goto the infos classes
   # relations
   belongs_to :z_item
 
