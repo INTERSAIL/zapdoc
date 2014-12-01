@@ -6,7 +6,7 @@ class ZItem < ActiveRecord::Base
 
   # relations
   has_many :histories, class_name: ZHistory, dependent: :destroy
-  belongs_to :folder, class_name: ZItem, foreign_key: :z_item_id
+  belongs_to :folder, class_name: ZFolder, foreign_key: :z_item_id
 
   # event hooks
   before_save :historicize
@@ -36,7 +36,7 @@ class ZItem < ActiveRecord::Base
 
   def historicize
     self.revision = self.revision.nil? ? 1 : self.revision + 1
-    ZHistory.create z_item: ZItem.find(self.id) unless self.new_record?
+    ZHistory.create item: ZItem.find(self.id) unless self.new_record?
   end
 
   #@jtodoLOW handle the first and last with timestamp because of uuid as id

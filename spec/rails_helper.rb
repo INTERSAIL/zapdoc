@@ -47,7 +47,7 @@ RSpec.configure do |config|
   end
 
   config.before(:all) do
-    #@jtodo handle that with various seed data
+    #@jtodoIMP handle that with various seed data
     # depending on the SUT
 
     # example directory structure:

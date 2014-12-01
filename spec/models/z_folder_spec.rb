@@ -36,6 +36,10 @@ RSpec.describe ZFolder, type: :model do
       folder.folder = @root
       expect(folder.valid?).to be true
     end
+
+    context "attaching data to a folder" do
+
+    end
   end
 
   #@jtodoIMP the document structure creation then do the history
