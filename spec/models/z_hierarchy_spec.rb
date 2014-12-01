@@ -38,6 +38,12 @@ describe ZHierarchy, type: :model do
         expect(@hierarchy.root?).to be_equal false
       end
 
+      context 'folder structure' do
+        xit "should check for folder presence of item" do
+
+        end
+      end
+
       context 'default folder' do
         it 'should return root folder' do
           @hierarchy.item = @item

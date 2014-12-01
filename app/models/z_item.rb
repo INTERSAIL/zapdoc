@@ -1,5 +1,6 @@
 class ZItem < ActiveRecord::Base
   attr_accessor :hierarchy
+  scope :of_type, ->(type){where(mime_type: type)}
 
   #@jtodoMED add query scopes here for childrens
 
@@ -25,10 +26,6 @@ class ZItem < ActiveRecord::Base
   # def self.in_folder(folder)
   #   self.where(folder: folder)
   # end
-
-  def self.of_type(type)
-    self.where mime_type: type
-  end
 
   def hierarchy
     @hierarchy || initialize_hierarchy
