@@ -9,12 +9,13 @@ class ZFolder < ZItem
   #relations
   has_many :folders, class_name: ZFolder, foreign_key: :z_item_id
   has_many :documents, class_name: ZDocument, foreign_key: :z_item_id
+  has_many :items, class_name: ZItem, foreign_key: :z_item_id
 
   #validation
   validates_with UniqueRootValidator
 
   def self.root_label
-    '__ROOT__'
+    'ROOT'
   end
 
   def root

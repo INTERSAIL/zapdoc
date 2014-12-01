@@ -6,6 +6,7 @@ class ZItem < ActiveRecord::Base
 
   # relations
   has_many :histories, class_name: ZHistory, dependent: :destroy
+  #@jtodoMED use ZFolder class instead and fix the circular dependency if using ZFolder
   belongs_to :folder, class_name: ZItem, foreign_key: :z_item_id
 
   # event hooks
