@@ -3,7 +3,7 @@ class ZItem < ActiveRecord::Base
   scope :of_type, ->(type){where mime_type: type}
   scope :in_folder, ->(folder){where z_item: folder}
 
-  #@jtodoMED add query scopes here for childrens
+  #@jtodoMED add query scopes here for childrens then godo document
 
   # relations
   has_many :z_history, dependent: :destroy

@@ -1,2 +1,3 @@
-class ZDocumentInfo < ActiveRecord::Base
+class ZDocumentInfo < ZItemInfo
+  #@jtodoIMP do this
 end
