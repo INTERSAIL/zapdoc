@@ -9,8 +9,7 @@ RSpec.describe ZHistory, :type => :model do
     it { should have_timestamps }
 
     it 'should have a relation with history' do
-      pending
-      should belongs_to :item
+      should belong_to :item
     end
 
     it 'should validate presence of item' do

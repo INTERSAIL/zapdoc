@@ -6,7 +6,7 @@ class ZItem < ActiveRecord::Base
 
   # relations
   has_many :histories, class_name: ZHistory, dependent: :destroy
-  belongs_to :folder, class_name: ZFolder, foreign_key: :z_item_id
+  belongs_to :folder, class_name: ZItem, foreign_key: :z_item_id
 
   # event hooks
   before_save :historicize
