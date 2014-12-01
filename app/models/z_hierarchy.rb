@@ -20,8 +20,7 @@ class ZHierarchy < ActiveRecord::Base
 
   def default
     return nil if root?
-    return find_root if find_root
-    root
+    find_root || root
   end
 
   def find_root

@@ -1,19 +1,19 @@
 class ZHistory < ActiveRecord::Base
-  #@jtodoIMP finish chekc here then goto the infos classes
+  #@jtodoIMP finish check here then goto the infos classes
   # relations
-  belongs_to :z_item
+  belongs_to :item, class_name: ZItem, foreign_key: :z_item_id
 
   # event hooks
   before_validation :set_defaults
 
   # validation
-  validates :z_item, presence: true
+  validates :item, presence: true
   validates :revision, presence: true, numericality: true
 
   private
 
   def set_defaults
-    self.revision = self.z_item.revision unless self.z_item.nil?
+    self.revision = self.item.revision unless self.item.nil?
     self.history_date = Time.now
   end
 end

@@ -10,11 +10,11 @@ RSpec.describe ZHistory, :type => :model do
 
     it 'should have a relation with history' do
       pending
-      should belongs_to :z_item
+      should belongs_to :item
     end
 
     it 'should validate presence of item' do
-      should validate_presence_of :z_item
+      should validate_presence_of :item
     end
 
     it 'should validate revision' do
@@ -26,7 +26,7 @@ RSpec.describe ZHistory, :type => :model do
   context 'revision' do
     it 'should have equal revision of his item' do
       item = ZItem.create label: '1', revision: 12
-      history = ZHistory.create z_item: item
+      history = ZHistory.create item: item
       expect(history.revision).to eq item.revision
     end
   end
