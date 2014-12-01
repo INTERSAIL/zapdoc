@@ -2,12 +2,39 @@ require 'rails_helper'
 
 RSpec.describe ZFolder, type: :model do
 
-  #@jtodoIMP test for unique root and is_root
+  context "hierarchy" do
+    before(:all) do
+      @root = ZFolder.create label: ZFolder.root_label, z_item: nil
+    end
 
-  it 'has root_label' do
-    expect(ZFolder.root_label).not_to be_empty
+    it 'has root_label' do
+      expect(ZFolder.root_label).not_to be_empty
+    end
+
+    it "should ask if it's root?" do
+      hierarchy = double(ZHierarchy)
+      expect(hierarchy).to receive(:root?).once
+      @root.hierarchy = hierarchy
+
+      @root.root?
+    end
+
+    it "should ask for the root folder" do
+      hierarchy = double(ZHierarchy)
+      expect(hierarchy).to receive(:root).once
+      @root.hierarchy = hierarchy
+
+      @root.root
+    end
+
+    it "should create only one root" do
+      invalid_folder = ZFolder.create(label: ZFolder.root_label)
+      expect(invalid_folder.valid?).to be_equal false
+      expect(invalid_folder.errors.count).to be == 1
+    end
   end
 
+  #@jtodoIMP the document structure creation and check after finishing document test
   # context 'should have documents' do
   #   before(:all) do
   #     ZItem.destroy_all

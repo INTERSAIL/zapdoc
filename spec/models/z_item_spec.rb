@@ -41,8 +41,8 @@ RSpec.describe ZItem, :type => :model do
     end
   end
 
-  #@jtodoLOW here you can see that all thoose responsability
-  #@jtodoLOW should be putted in a revision class asap to keep it Solid
+  #@jtodoLOW too many responsability for revision handling
+  #@jtodoLOW should extract to class for Single Responsability
   context 'revision' do
     it 'should have revision 1 on creation' do
       item = ZItem.create(label: '1')
