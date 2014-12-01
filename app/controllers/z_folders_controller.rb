@@ -14,7 +14,7 @@ class ZFoldersController < ApplicationItemsBaseController
 
   # GET /folders/new
   def new
-    @z_folder = ZFolder.new(folder: @folder)
+    @z_folder = ZFolder.new(folder_class: @folder)
   end
 
   # GET /folders/1/edit

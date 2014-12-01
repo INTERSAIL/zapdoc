@@ -1,6 +1,7 @@
 class ZItem < ActiveRecord::Base
   attr_accessor :hierarchy
-  scope :of_type, ->(type){where(mime_type: type)}
+  scope :of_type, ->(type){where mime_type: type}
+  scope :in_folder, ->(folder){where z_item: folder}
 
   #@jtodoMED add query scopes here for childrens
 
@@ -21,12 +22,6 @@ class ZItem < ActiveRecord::Base
   alias histories z_history
   alias folder z_item
 
-  #
-  #@jtodoIMP put this in hierarchy
-  # def self.in_folder(folder)
-  #   self.where(folder: folder)
-  # end
-
   def hierarchy
     @hierarchy || initialize_hierarchy
   end
@@ -44,7 +39,7 @@ class ZItem < ActiveRecord::Base
 
   def historicize
     self.revision = self.revision.nil? ? 1 : self.revision + 1
-    ZHistory.create(z_item: ZItem.find(self.id)) unless self.new_record?
+    ZHistory.create z_item: ZItem.find(self.id) unless self.new_record?
   end
 
   #@jtodoLOW handle the first and last with timestamp because of uuid as id

@@ -10,11 +10,11 @@ class ZHierarchy < ActiveRecord::Base
   end
 
   def root?
-    return false unless self.item.is_a? folder
+    return false unless self.item.is_a? folder_class
     self.item.folder.nil?
   end
 
-  def folder
+  def folder_class
     ZFolder
   end
 
@@ -25,12 +25,16 @@ class ZHierarchy < ActiveRecord::Base
   end
 
   def find_root
-    folder.find_by(z_item_id: nil)
+    folder_class.find_by z_item_id: nil
   end
 
   private
 
   def new_root
-    folder.create!(label: folder.root_label)
+    folder_class.create! label: folder_class.root_label
+  end
+
+  def method_missing(name, *args, &block)
+    self.item.send name,args,block
   end
 end

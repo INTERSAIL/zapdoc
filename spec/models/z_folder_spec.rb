@@ -12,7 +12,7 @@ RSpec.describe ZFolder, type: :model do
     end
 
     it "should ask if it's root?" do
-      hierarchy = double(ZHierarchy)
+      hierarchy = double ZHierarchy
       expect(hierarchy).to receive(:root?).once
       @root.hierarchy = hierarchy
 
@@ -20,7 +20,7 @@ RSpec.describe ZFolder, type: :model do
     end
 
     it "should ask for the root folder" do
-      hierarchy = double(ZHierarchy)
+      hierarchy = double ZHierarchy
       expect(hierarchy).to receive(:root).once
       @root.hierarchy = hierarchy
 
@@ -28,7 +28,7 @@ RSpec.describe ZFolder, type: :model do
     end
 
     it "should create only one root" do
-      invalid_folder = ZFolder.create(label: ZFolder.root_label)
+      invalid_folder = ZFolder.create label: ZFolder.root_label
       expect(invalid_folder.valid?).to be_equal false
       expect(invalid_folder.errors.count).to be == 1
     end

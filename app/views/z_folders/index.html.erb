@@ -15,7 +15,7 @@
   <tbody>
     <% unless @folder.root? %>
       <tr>
-        <td colspan="6"><%= link_to '..', z_folders_path(folder_id: @folder.folder.identifier) %></td>
+        <td colspan="6"><%= link_to '..', z_folders_path(folder_id: @folder.folder_class.identifier) %></td>
       </tr>
     <% end %>
     <% @z_folders.each do |folder| %>

@@ -7,8 +7,8 @@ module Api
         items = ZItem.in_folder(@folder).to_a
 
         unless @folder.root?
-          @folder.folder.label = '..'
-          items.unshift(@folder.folder)
+          @folder.folder_class.label = '..'
+          items.unshift(@folder.folder_class)
         end
 
         render json: ZItemInfo.from_z_item(items), status: 200
