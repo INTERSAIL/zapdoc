@@ -48,7 +48,7 @@ describe ZHierarchy, type: :model do
 
     context 'without root folder' do
       before(:each) do
-         @hierarchy.folder.where(z_item_id: nil).destroy_all
+        @hierarchy.folder.where(z_item_id: nil).destroy_all
         @hierarchy.item = @item
       end
 

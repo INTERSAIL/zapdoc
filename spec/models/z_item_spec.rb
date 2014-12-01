@@ -75,10 +75,22 @@ RSpec.describe ZItem, :type => :model do
       expect(subject.hierarchy.item).to be_equal(subject)
     end
 
-    it 'should have a default folder', test: true do
-      item = ZItem.create(label: '1')
-      expect(item.z_item).to eq(item.hierarchy.root)
-      #@jtodoIMP finish zfolder then finish item
+    it 'should have set a default folder', test: true do
+      class ZItem
+        @@mock_hierarchy
+        def self.hierarchy=(value)
+          @@mock_hierarchy = value
+        end
+        def hierarchy
+          @@mock_hierarchy
+        end
+      end
+
+      hierarchy = double(ZHierarchy)
+      expect(hierarchy).to receive(:default).once
+      ZItem.hierarchy = hierarchy
+
+      item = ZItem.new(label: '1')
     end
   end
 end
