@@ -76,7 +76,7 @@ RSpec.describe ZItem, :type => :model do
     end
 
     it 'should have set a default folder', test: true do
-      class ZItem
+      class ZItemStub < ZItem
         @@mock_hierarchy
         def self.hierarchy=(value)
           @@mock_hierarchy = value
@@ -88,9 +88,19 @@ RSpec.describe ZItem, :type => :model do
 
       hierarchy = double(ZHierarchy)
       expect(hierarchy).to receive(:default).once
-      ZItem.hierarchy = hierarchy
+      ZItemStub.hierarchy = hierarchy
 
-      item = ZItem.new(label: '1')
+      item = ZItemStub.new(label: '1')
+    end
+  end
+
+  context 'type handling' do
+    it 'should obtain items of a certain mime_type' do
+      mime_type = "image/png"
+
+      item = ZItem.create(label: "1", mime_type: mime_type)
+      expect(ZItem.of_type(mime_type).first).to be == item
+      expect(ZItem.of_type(:none).empty?).to be_equal true
     end
   end
 end

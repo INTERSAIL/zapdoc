@@ -1,7 +1,7 @@
 class ZItem < ActiveRecord::Base
   attr_accessor :hierarchy
 
-  #@jtodoIMP add query scopes here for childrens
+  #@jtodoMED add query scopes here for childrens
 
   # relations
   has_many :z_history, dependent: :destroy
@@ -26,11 +26,9 @@ class ZItem < ActiveRecord::Base
   #   self.where(folder: folder)
   # end
 
-  #@jtodoIMP implement that and create the item_type column
-  # def self.of_type(type)
-  #   self.where(_type: type)
-  # end
-  #
+  def self.of_type(type)
+    self.where mime_type: type
+  end
 
   def hierarchy
     @hierarchy || initialize_hierarchy
