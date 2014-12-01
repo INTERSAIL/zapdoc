@@ -1,9 +1,11 @@
 class ZItem < ActiveRecord::Base
   attr_accessor :hierarchy
+  #scopes
   scope :of_type, ->(type){where mime_type: type}
   scope :in_folder, ->(folder){where z_item: folder}
-
-  #@jtodoMED add query scopes here for childrens then godo document
+  # hierarchy
+  scope :document, ->{where type: ZDocument.name}
+  scope :folder, ->{where type: ZFolder.name}
 
   # relations
   has_many :z_history, dependent: :destroy

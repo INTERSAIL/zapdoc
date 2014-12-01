@@ -93,6 +93,16 @@ RSpec.describe ZItem, :type => :model do
       item = ZItemStub.new label: '1'
     end
 
+    it 'should have query scope for document' do
+      document = ZDocument.create label: "1"
+      expect(ZItem.document.first).to be == document
+    end
+
+    it 'should have query scope for folder' do
+      folder = ZFolder.create label: "1"
+      expect(ZItem.folder.first).to be == folder
+    end
+
     context 'folder structure' do
       it "should have query scope for folder with in_folder" do
         root_folder = ZHierarchy.new.root
