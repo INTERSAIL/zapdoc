@@ -17,17 +17,12 @@ RSpec.describe ZItem, :type => :model do
       should have_an_alias_attribute :id,:identifier
     end
 
-    it 'should have an alias for z_history named history' do
-      should have_an_alias :z_history, :histories
+    it 'should have a relation with folder' do
+      should belong_to :folder
     end
 
     it 'should have a relation with history' do
-      should have_many(:z_history).dependent :destroy
-    end
-
-    it 'should have a relation with folder to itself' do
-      should belong_to :z_item
-      should have_an_alias :z_item, :folder
+      should have_many(:histories).dependent :destroy
     end
 
     it 'should validate presence of label' do
@@ -93,20 +88,10 @@ RSpec.describe ZItem, :type => :model do
       item = ZItemStub.new label: '1'
     end
 
-    it 'should have query scope for document' do
-      document = ZDocument.create label: "1"
-      expect(ZItem.document.first).to be == document
-    end
-
-    it 'should have query scope for folder' do
-      folder = ZFolder.create label: "1"
-      expect(ZItem.folder.first).to be == folder
-    end
-
     context 'folder structure' do
       it "should have query scope for folder with in_folder" do
         root_folder = ZHierarchy.new.root
-        item = ZItem.create label: "1", z_item: root_folder
+        item = ZItem.create label: "1", folder: root_folder
 
         expect(ZItem.in_folder(root_folder).first).to be == item
         expect(ZItem.of_type(:none).empty?).to be_equal true

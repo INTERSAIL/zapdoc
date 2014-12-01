@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20141126141019) do
     t.integer  "revision"
     t.string   "format_identifier"
     t.string   "mime_type"
-    t.integer  "z_item_id"
+    t.uuid     "z_item_id"
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"

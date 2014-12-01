@@ -2,14 +2,11 @@ class ZItem < ActiveRecord::Base
   attr_accessor :hierarchy
   #scopes
   scope :of_type, ->(type){where mime_type: type}
-  scope :in_folder, ->(folder){where z_item: folder}
-  # hierarchy
-  scope :document, ->{where type: ZDocument.name}
-  scope :folder, ->{where type: ZFolder.name}
+  scope :in_folder, ->(folder){where folder: folder}
 
   # relations
-  has_many :z_history, dependent: :destroy
-  belongs_to :z_item
+  has_many :histories, class_name: ZHistory, dependent: :destroy
+  belongs_to :folder, class_name: ZItem, foreign_key: :z_item_id
 
   # event hooks
   before_save :historicize
@@ -21,8 +18,6 @@ class ZItem < ActiveRecord::Base
 
   # aliases
   alias_attribute :identifier, :id
-  alias histories z_history
-  alias folder z_item
 
   def hierarchy
     @hierarchy || initialize_hierarchy
@@ -36,7 +31,7 @@ class ZItem < ActiveRecord::Base
 
   def set_defaults
     self.hierarchy = hierarchy
-    self.z_item = self.hierarchy.default
+    self.folder = self.hierarchy.default
   end
 
   def historicize

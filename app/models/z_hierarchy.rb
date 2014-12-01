@@ -25,7 +25,7 @@ class ZHierarchy < ActiveRecord::Base
   end
 
   def find_root
-    folder_class.find_by z_item_id: nil
+    folder_class.find_by folder: nil
   end
 
   private

@@ -4,7 +4,7 @@ RSpec.describe ZFolder, type: :model do
 
   context "hierarchy" do
     before(:all) do
-      @root = ZFolder.create label: ZFolder.root_label, z_item: nil
+      @root = ZFolder.create label: ZFolder.root_label, folder: nil
     end
 
     it 'has root_label' do
@@ -28,9 +28,13 @@ RSpec.describe ZFolder, type: :model do
     end
 
     it "should create only one root" do
-      invalid_folder = ZFolder.create label: ZFolder.root_label
-      expect(invalid_folder.valid?).to be_equal false
-      expect(invalid_folder.errors.count).to be == 1
+      folder = ZFolder.create label: ZFolder.root_label
+
+      expect(folder.valid?).to be false
+      expect(folder.errors.count).to be == 1
+
+      folder.folder = @root
+      expect(folder.valid?).to be true
     end
   end
 
