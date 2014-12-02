@@ -18,7 +18,7 @@ RSpec.describe ZDocument, :type => :model do
     expect(document.resource_uri).to be == :fake_name
   end
 
-  #@jtodoIMP fix this then use mock then test the file repo and then fix dependency in zfolder
+  #@jtodoLOW here should use an adapter and test that with mock instead of repository then integrate test the implementations
   context 'data' do
     let (:document) { ZDocument.new label: "document1", data: "Hello world" }
 
@@ -34,10 +34,10 @@ RSpec.describe ZDocument, :type => :model do
 
     it 'should handle write errors with save!' do
       repository = double
-      expect(repository).to receive(:write).once.with(document.resource_uri,document.data).and_return false
+      expect(repository).to receive(:write).once.with(document.resource_uri, document.data).and_return false
       document.repository = repository
 
-      expect{document.save!}.to raise_exception 'Error writing data'
+      expect { document.save! }.to raise_exception 'Error writing data'
     end
 
     it 'should read data when read from database' do
@@ -49,28 +49,30 @@ RSpec.describe ZDocument, :type => :model do
       expect(document_persisted.data).to eq :data
     end
 
-    it 'should handle write errors with write!' do
-      repository = double
-      expect(repository).to receive(:write).and_return(false)
-      document.repository = repository
-
-      expect{document.send :write! }.to raise_exception 'Error writing data'
-    end
-
-    it 'should handle write success with write!' do
-      repository = double
-      expect(repository).to receive(:write).and_return(:resource_uri)
-      document.repository = repository
-
-      expect(document.send :write!).to be :resource_uri
-    end
-
     it 'should delete data when destroyed' do
       repository = double
       expect(repository).to receive(:delete).once.with(document.resource_uri)
       document.repository = repository
 
       document.destroy
+    end
+
+    context 'write repository integration' do
+      it 'should handle write errors with write!' do
+        repository = double
+        expect(repository).to receive(:write).and_return(false)
+        document.repository = repository
+
+        expect { document.send :write! }.to raise_exception 'Error writing data'
+      end
+
+      it 'should handle write success with write!' do
+        repository = double
+        expect(repository).to receive(:write).and_return(:resource_uri)
+        document.repository = repository
+
+        expect(document.send :write!).to be :resource_uri
+      end
     end
   end
 end

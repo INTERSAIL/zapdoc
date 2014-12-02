@@ -1,4 +1,3 @@
-#@jtodoIMP do test this and use file reset only on his test
 class PlainFilesystemRepository
   def initialize(path)
     @path = path
