@@ -1,5 +1,4 @@
 class ZHistory < ActiveRecord::Base
-  #@jtodoIMP finish check here then goto the infos classes
   # relations
   belongs_to :item, class_name: ZItem, foreign_key: :z_item_id
 

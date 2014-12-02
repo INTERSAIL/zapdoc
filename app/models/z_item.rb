@@ -5,9 +5,9 @@ class ZItem < ActiveRecord::Base
   scope :in_folder, ->(folder){where folder: folder}
 
   # relations
-  has_many :histories, class_name: ZHistory, dependent: :destroy
-  #@jtodoMED use ZFolder class instead and fix the circular dependency if using ZFolder
+  #@jtodoLOW use ZFolder class instead and fix the circular dependency if using ZFolder
   belongs_to :folder, class_name: ZItem, foreign_key: :z_item_id
+  has_many :histories, class_name: ZHistory, dependent: :destroy
 
   # event hooks
   before_save :historicize

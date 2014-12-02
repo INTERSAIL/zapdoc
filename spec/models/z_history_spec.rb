@@ -8,7 +8,7 @@ RSpec.describe ZHistory, :type => :model do
     it { should have_db_column(:revision).of_type :integer }
     it { should have_timestamps }
 
-    it 'should have a relation with history' do
+    it 'should have a relation with item' do
       should belong_to :item
     end
 

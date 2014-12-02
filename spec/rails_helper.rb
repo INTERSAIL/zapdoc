@@ -46,28 +46,6 @@ RSpec.configure do |config|
     end
   end
 
-  config.before(:all) do
-    #@jtodoIMP handle that with various seed data
-    # depending on the SUT
-
-    # example directory structure:
-    # - ROOT
-    # -- ROOT:1
-    # -- ROOT:SUB1
-    # --- SUB1:1
-    # -- ROOT:SUB2
-
-    # ZItem.destroy_all
-
-    # @root = ZFolder.root
-    # @root_doc1 = @root.documents.create(label: 'ROOT:1', format_identifier: :txt, data: 'Hello world!')
-    #
-    # @sub = @root.folders.create!(label: 'ROOT:SUB1')
-    # @sub_doc1 = @sub.documents.create!(label: 'SUB1:1', format_identifier: :txt, data: 'Hello world!')
-    #
-    # @sub2 = @root.folders.create(label: 'ROOT:SUB2')
-  end
-
   config.after(:all) do
     FileUtils.rm_f(Dir[File.join(ZapDoc.config.repository.path, '[^.]*')])
   end
