@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 20141126141019) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "filename"
+    t.string   "resource_uri"
   end
 
 end

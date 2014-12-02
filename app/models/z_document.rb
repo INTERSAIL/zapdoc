@@ -1,14 +1,14 @@
 class ZDocument < ZItem
   attr_accessor :data
   attr_accessor :repository, :name_generator
-  # event hooks
+  # event hook s
   after_destroy :delete_file
 
   # validation
-  validates :filename, uniqueness: true
+  validates :resource_uri, uniqueness: true
 
   def data
-    @data ||= self.repository.read(self.filename)
+    @data ||= self.repository.read(self.resource_uri)
   end
 
   #@jtodoLOW refactor this beheviour: you need to call save of activerecord first and
@@ -27,7 +27,7 @@ class ZDocument < ZItem
     super
     initialize_name_generator
     initialize_repository
-    initialize_filename
+    initialize_resource_uri
   end
 
   def initialize_name_generator
@@ -38,21 +38,21 @@ class ZDocument < ZItem
     self.repository ||= ZapDoc.config.repository
   end
 
-  def initialize_filename
-    self.filename = self.name_generator.next
+  def initialize_resource_uri
+    self.resource_uri = self.name_generator.next
   end
 
   def write
-    self.filename = self.repository.write(self.filename, self.data) || self.filename
+    self.resource_uri = self.repository.write(self.resource_uri, self.data) || self.resource_uri
   end
 
   def write!
-    raise 'Error writing data' unless self.filename = self.repository.write(self.filename, self.data)
-    self.filename
+    raise 'Error writing data' unless ( self.resource_uri = self.repository.write(self.resource_uri, self.data) )
+    self.resource_uri
   end
 
-  #@jtodoIMP
+  #@jtodoLOW handle case when delete fails and in that case don't remove the file
   def delete_file
-    self.repository.delete(self.filename)
+    self.repository.delete(self.resource_uri)
   end
 end
