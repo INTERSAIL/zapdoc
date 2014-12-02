@@ -1,6 +1,6 @@
 class ZHistory < ActiveRecord::Base
   # relations
-  belongs_to :item, class_name: ZItem, foreign_key: :z_item_id
+  belongs_to :item, class_name: :ZItem, foreign_key: :z_item_id
 
   # event hooks
   before_validation :set_defaults
