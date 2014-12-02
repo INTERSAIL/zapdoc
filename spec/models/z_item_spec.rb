@@ -30,7 +30,7 @@ RSpec.describe ZItem, :type => :model do
     end
 
     it 'should validate persisted revision record' do
-      item = ZItem.create label: '1'
+      item = ZItem.create! label: '1'
       expect {item.should validate_presence_of :revision}
       expect {item.should validate_numericality_of :revision}
     end
@@ -40,12 +40,12 @@ RSpec.describe ZItem, :type => :model do
   #@jtodoLOW should extract to class for Single Responsability
   context 'revision' do
     it 'should have revision 1 on creation' do
-      item = ZItem.create(label: '1')
+      item = ZItem.create!(label: '1')
       expect(item.revision).to eq(1)
     end
 
     context 'with two revisions' do
-      let(:item) { ZItem.create label: '1' }
+      let(:item) { ZItem.create! label: '1' }
       before(:each) do
         item.update_attribute :label, '2'
       end
@@ -80,7 +80,7 @@ RSpec.describe ZItem, :type => :model do
     context 'folder structure' do
       it "should have query scope for folder with in_folder" do
         root_folder = ZHierarchy.new.root
-        item = ZItem.create label: "1", folder: root_folder
+        item = ZItem.create! label: "1", folder: root_folder
 
         expect(ZItem.in_folder(root_folder).first).to be == item
         expect(ZItem.of_type(:none).empty?).to be_equal true
@@ -92,7 +92,7 @@ RSpec.describe ZItem, :type => :model do
     it 'should have query scope for mime_type with of_type' do
       mime_type = "image/png"
 
-      item = ZItem.create label: "1", mime_type: mime_type
+      item = ZItem.create! label: "1", mime_type: mime_type
       expect(ZItem.of_type(mime_type).first).to be == item
       expect(ZItem.of_type(:none).empty?).to be_equal true
     end

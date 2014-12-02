@@ -23,7 +23,7 @@ describe ZHierarchy, type: :model do
     context 'with root folder' do
       before(:all) do
         clearFolders
-        @root = @hierarchy.folder_class.create label: @hierarchy.folder_class.root_label, folder: nil
+        @root = @hierarchy.folder_class.create! label: @hierarchy.folder_class.root_label, folder: nil
         @hierarchy.item = @root
       end
 
@@ -31,10 +31,10 @@ describe ZHierarchy, type: :model do
         expect(@hierarchy.root).to be == @root
       end
 
-      it "should obtain if it's the root folder", test: :true do
+      it "should obtain if it's the root folder" do
         expect(@hierarchy.root?).to be_equal true
 
-        @hierarchy.item = @hierarchy.folder_class.create folder: @root
+        @hierarchy.item = @hierarchy.folder_class.create! folder: @root, label: "ROOT-1"
         expect(@hierarchy.root?).to be_equal false
       end
 

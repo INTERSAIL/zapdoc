@@ -24,8 +24,8 @@ RSpec.describe ZHistory, :type => :model do
 
   context 'revision' do
     it 'should have equal revision of his item' do
-      item = ZItem.create label: '1', revision: 12
-      history = ZHistory.create item: item
+      item = ZItem.create! label: '1', revision: 12
+      history = ZHistory.create! item: item
       expect(history.revision).to eq item.revision
     end
   end

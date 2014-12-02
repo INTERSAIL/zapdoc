@@ -17,7 +17,7 @@ RSpec.describe ZFolder, type: :model do
 
   context "hierarchy" do
     before(:all) do
-      @root = ZFolder.create label: ZFolder.root_label, folder: nil
+      @root = ZFolder.create! label: ZFolder.root_label, folder: nil
     end
 
     it 'has root_label' do
@@ -63,12 +63,12 @@ RSpec.describe ZFolder, type: :model do
 
       @root = ZHierarchy.new.root
 
-      @root_doc1 = @root.documents.create(label: 'ROOT:1', format_identifier: :txt)
+      @root_doc1 = @root.documents.create!(label: 'ROOT:1', format_identifier: :txt)
 
-      @sub = @root.folders.create(label: 'ROOT:SUB1')
-      @sub_doc1 = @sub.documents.create(label: 'SUB1:1', format_identifier: :txt)
+      @sub = @root.folders.create!(label: 'ROOT:SUB1')
+      @sub_doc1 = @sub.documents.create!(label: 'SUB1:1', format_identifier: :txt)
 
-      @sub2 = @root.folders.create(label: 'ROOT:SUB2')
+      @sub2 = @root.folders.create!(label: 'ROOT:SUB2')
     end
 
     it 'should have 3 items' do
