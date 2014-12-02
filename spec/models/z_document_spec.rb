@@ -21,10 +21,7 @@ RSpec.describe ZDocument, :type => :model do
   #@jtodoIMP fix this then use mock then test the file repo and then fix dependency in zfolder
   #@jtodoIMP use resource name instead of filename!
   context 'data' do
-    let (:document) { ZDocument.new label: "document1" }
-    before :each do
-      document.data = 'Hello world'
-    end
+    let (:document) { ZDocument.new label: "document1", data: "Hello world" }
 
     it 'should save data when write to database' do
       repository = double
@@ -45,10 +42,29 @@ RSpec.describe ZDocument, :type => :model do
       expect{document.save!}.to raise_exception 'Error writing data'
     end
 
-    #@jtodoIMP
-    xit 'should read data when read from database' do
-      d2 = ZDocument.find(document.id)
-      expect(d2.data).to eq('Hello world')
+    it 'should read data when read from database' do
+      document_persisted = ZDocument.create! label: "document2"
+      repository = double
+      expect(repository).to receive(:read).once.with(document_persisted.filename).and_return :data
+      document_persisted.repository = repository
+
+      expect(document_persisted.data).to eq :data
+    end
+
+    it 'should handle write errors with write!' do
+      repository = double
+      expect(repository).to receive(:write).and_return(false)
+      document.repository = repository
+
+      expect{document.send :write! }.to raise_exception 'Error writing data'
+    end
+
+    it 'should handle write success with write!' do
+      repository = double
+      expect(repository).to receive(:write).and_return(:filename)
+      document.repository = repository
+
+      expect(document.send :write!).to be :filename
     end
 
     xit 'should delete data when destroyed' do

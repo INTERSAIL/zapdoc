@@ -4,7 +4,7 @@ module ZapDoc
     attr_accessor :repository
   end
 
-  cattr_accessor :config do
+  mattr_accessor :config do
     Configuration.new
   end
 

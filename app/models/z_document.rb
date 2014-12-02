@@ -8,9 +8,11 @@ class ZDocument < ZItem
   validates :filename, uniqueness: true
 
   def data
-    @data ||= ZapDoc.config.repository.read(self.filename)
+    @data ||= self.repository.read(self.filename)
   end
 
+  #@jtodoLOW refactor this beheviour: you need to call save of activerecord first and
+  # if you find any problem rollback the transaction and don't use the file repository
   def save(options = {})
     super if write
   end
@@ -23,13 +25,13 @@ class ZDocument < ZItem
 
   def set_defaults
     super
-    initialize_repository
     initialize_name_generator
+    initialize_repository
     initialize_filename
   end
 
   def initialize_name_generator
-    self.name_generator ||= ZapDoc.config.filename_generator.next
+    self.name_generator ||= ZapDoc.config.filename_generator
   end
 
   def initialize_repository
@@ -37,7 +39,7 @@ class ZDocument < ZItem
   end
 
   def initialize_filename
-    self.filename ||= self.name_generator.next
+    self.filename = self.name_generator.next
   end
 
   def write
@@ -45,7 +47,8 @@ class ZDocument < ZItem
   end
 
   def write!
-    raise 'Error writing data' unless (self.filename = self.repository.write(self.filename, self.data))
+    raise 'Error writing data' unless self.filename = self.repository.write(self.filename, self.data)
+    self.filename
   end
 
   #@jtodoIMP
