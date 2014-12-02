@@ -9,7 +9,7 @@ RSpec.describe ZItem, :type => :model do
     it { should have_db_column(:revision).of_type :integer }
     it { should have_db_column(:format_identifier).of_type :string }
     it { should have_db_column(:mime_type).of_type :string }
-    it { should have_db_column(:z_item_id).of_type :integer }
+    it { should have_db_column(:z_item_id).of_type :uuid }
     it { should implement_sti }
     it { should have_timestamps }
 
@@ -71,21 +71,10 @@ RSpec.describe ZItem, :type => :model do
     end
 
     it 'should have set a default folder' do
-      class ZItemStub < ZItem
-        @@mock_hierarchy
-        def self.hierarchy=(value)
-          @@mock_hierarchy = value
-        end
-        def hierarchy
-          @@mock_hierarchy
-        end
-      end
-
       hierarchy = double ZHierarchy
       expect(hierarchy).to receive(:default).once
-      ZItemStub.hierarchy = hierarchy
 
-      item = ZItemStub.new label: '1'
+      item = ZItem.new label: '1', hierarchy: hierarchy
     end
 
     context 'folder structure' do

@@ -1,6 +1,6 @@
 class ZDocument < ZItem
-  #@jtodoIMP then finish folder
   attr_accessor :data
+  attr_accessor :repository, :name_generator
   # event hooks
   after_destroy :delete_file
 
@@ -11,7 +11,6 @@ class ZDocument < ZItem
     @data ||= ZapDoc.config.repository.read(self.filename)
   end
 
-  #@jtodoIMP use events here when done
   def save(options = {})
     super if write
   end
@@ -19,6 +18,7 @@ class ZDocument < ZItem
   def save!(options = {})
     if write
       super
+    #@jtodoIMP
     else
       raise 'Error writing data'
     end
@@ -28,13 +28,29 @@ class ZDocument < ZItem
 
   def set_defaults
     super
-    self.filename ||= ZapDoc.config.filename_generator.next
+    initialize_repository
+    initialize_name_generator
+    initialize_filename
   end
 
+  def initialize_name_generator
+    self.name_generator ||= ZapDoc.config.filename_generator.next
+  end
+
+  def initialize_repository
+    self.repository ||= ZapDoc.config.repository
+  end
+
+  def initialize_filename
+    self.filename ||= self.name_generator.next
+  end
+
+  #@jtodoIMP
   def write
-    self.filename = ZapDoc.config.repository.write(self.filename, self.data) || self.filename
+    self.filename = self.repository.write(self.filename, self.data) || self.filename
   end
 
+  #@jtodoIMP
   def delete_file
     ZapDoc.config.repository.delete(self.filename)
   end

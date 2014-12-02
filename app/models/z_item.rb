@@ -20,18 +20,14 @@ class ZItem < ActiveRecord::Base
   # aliases
   alias_attribute :identifier, :id
 
-  def hierarchy
-    @hierarchy || initialize_hierarchy
-  end
-
   private
 
   def initialize_hierarchy
-   ZHierarchy.new item: self
+    self.hierarchy ||= ZHierarchy.new item: self
   end
 
   def set_defaults
-    self.hierarchy = hierarchy
+    initialize_hierarchy
     self.folder = self.hierarchy.default
   end
 
