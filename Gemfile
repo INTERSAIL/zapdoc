@@ -43,4 +43,5 @@ end
 # development
 group :development do
   gem 'pry-rails'
+  gem 'pry-doc'
 end
