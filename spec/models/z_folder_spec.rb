@@ -49,58 +49,36 @@ RSpec.describe ZFolder, type: :model do
       folder.folder = @root
       expect(folder.valid?).to be true
     end
+  end
 
-    #@jtodoIMP fix this tests then go with the history
-    context 'should have documents' do
+  context 'should have documents' do
+    before(:all) do
       # directory structure:
       # - ROOT
       # -- ROOT:1
       # -- ROOT:SUB1
       # --- SUB1:1
       # -- ROOT:SUB2
+      ZItem.destroy_all
 
-    #   before(:all) do
-    #     ZItem.destroy_all
-    #
-    #     @root_doc1 = @root.documents.create(label: 'ROOT:1', format_identifier: :txt, data: 'Hello world!')
-    #
-    #     @sub = @root.folders.create!(label: 'ROOT:SUB1')
-    #     @sub_doc1 = @sub.documents.create!(label: 'SUB1:1', format_identifier: :txt, data: 'Hello world!')
-    #
-    #     @sub2 = @root.folders.create(label: 'ROOT:SUB2')
-    #   end
-    #
-    #   it 'should have 2 items' do
-    #     expect(@root.items.count).to eq(2)
-    #   end
-    #   it 'should have 1 document' do
-    #     expect(@root.documents.count).to eq(1)
-    #   end
-    #   it 'should have 1 folder' do
-    #     expect(@root.folders.count).to eq(1)
-    #   end
-    # end
-    #
-    # it 'should exists a root folder' do
-    #   expect(ZFolder.root).to_not be_nil
-    # end
-    #
-    # it 'root folder must have its folder set to nil' do
-    #   expect(ZFolder.root.folder).to be_nil
-    # end
-    #
-    # context "attaching data to a folder" do
-    #   it "should attach a folder to a folder" do
-    #     child_folder = @root.folders.create label: "root_child_1"
-    #     expect(child_folder.folder).to be == @root
-    #     expect(child_folder.class.name).to be == ZFolder.name
-    #   end
-    #
-    #   it "should attach a document to a folder" do
-    #     child_document = @root.documents.create label: "document root_child_1"
-    #     expect(child_document.folder).to be == @root
-    #     expect(child_document.class.name).to be == ZDocument.name
-    #   end
+      @root = ZHierarchy.new.root
+
+      @root_doc1 = @root.documents.create(label: 'ROOT:1', format_identifier: :txt)
+
+      @sub = @root.folders.create(label: 'ROOT:SUB1')
+      @sub_doc1 = @sub.documents.create(label: 'SUB1:1', format_identifier: :txt)
+
+      @sub2 = @root.folders.create(label: 'ROOT:SUB2')
+    end
+
+    it 'should have 3 items' do
+      expect(@root.items.count).to eq(3)
+    end
+    it 'should have 1 document' do
+      expect(@root.documents.count).to eq(1)
+    end
+    it 'should have 2 folders' do
+      expect(@root.folders.count).to eq(2)
     end
   end
 end

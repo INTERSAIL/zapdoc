@@ -31,7 +31,7 @@ describe ZHierarchy, type: :model do
         expect(@hierarchy.root).to be == @root
       end
 
-      it "should obtain if it's the root folder ", test: :true do
+      it "should obtain if it's the root folder", test: :true do
         expect(@hierarchy.root?).to be_equal true
 
         @hierarchy.item = @hierarchy.folder_class.create folder: @root
@@ -77,7 +77,7 @@ describe ZHierarchy, type: :model do
 
   it "ask for item method if doesn't find it on himself" do
     item = double ZItem
-    lambda = ->{}
+    lambda = ->(){}
     expect(item).to receive("nonexistent_method").once.with(["param"], lambda)
     hierarchy = ZHierarchy.new item: item
 

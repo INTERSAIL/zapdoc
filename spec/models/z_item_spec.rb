@@ -4,7 +4,7 @@ RSpec.describe ZItem, :type => :model do
   context 'Database Mapping' do
     it { should have_db_column(:id).of_type :uuid }
     it { should have_db_column(:label).of_type :string }
-    it { should have_db_column(:custom_attributes).of_type:hstore }
+    it { should have_db_column(:custom_attributes).of_type :hstore }
     it { should have_db_column(:tags).of_type :text }
     it { should have_db_column(:revision).of_type :integer }
     it { should have_db_column(:format_identifier).of_type :string }

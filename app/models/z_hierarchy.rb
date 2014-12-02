@@ -30,7 +30,7 @@ class ZHierarchy < ActiveRecord::Base
   private
 
   def new_root
-    folder_class.create! label: folder_class.root_label
+    folder_class.create label: folder_class.root_label
   end
 
   def method_missing(name, *args, &block)
