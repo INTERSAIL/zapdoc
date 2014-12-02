@@ -19,22 +19,33 @@ RSpec.describe ZDocument, :type => :model do
   end
 
   #@jtodoIMP fix this then use mock then test the file repo and then fix dependency in zfolder
+  #@jtodoIMP use resource name instead of filename!
   context 'data' do
-    let (:document) { ZDocument.new label: "document1"}
+    let (:document) { ZDocument.new label: "document1" }
     before :each do
       document.data = 'Hello world'
     end
 
     it 'should save data when write to database' do
-      document.save!
+      repository = double
+      expect(repository).to receive(:write).once.with(document.filename, document.data).and_return :filename
+      document.repository = repository
 
+      document.save
+
+      expect(document.filename).to be_equal :filename
       # expect(ZapDoc.config.repository.read(document.filename)).to eq('Hello world')
     end
 
-    xit 'should handle write errors with save!' do
+    it 'should handle write errors with save!' do
+      repository = double
+      expect(repository).to receive(:write).once.with(document.filename,document.data).and_return false
+      document.repository = repository
 
+      expect{document.save!}.to raise_exception 'Error writing data'
     end
 
+    #@jtodoIMP
     xit 'should read data when read from database' do
       d2 = ZDocument.find(document.id)
       expect(d2.data).to eq('Hello world')

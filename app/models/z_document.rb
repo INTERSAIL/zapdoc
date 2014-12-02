@@ -16,12 +16,7 @@ class ZDocument < ZItem
   end
 
   def save!(options = {})
-    if write
-      super
-    #@jtodoIMP
-    else
-      raise 'Error writing data'
-    end
+    super if write!
   end
 
   private
@@ -45,13 +40,16 @@ class ZDocument < ZItem
     self.filename ||= self.name_generator.next
   end
 
-  #@jtodoIMP
   def write
     self.filename = self.repository.write(self.filename, self.data) || self.filename
   end
 
+  def write!
+    raise 'Error writing data' unless (self.filename = self.repository.write(self.filename, self.data))
+  end
+
   #@jtodoIMP
   def delete_file
-    ZapDoc.config.repository.delete(self.filename)
+    self.repository.delete(self.filename)
   end
 end
