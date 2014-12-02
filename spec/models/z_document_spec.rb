@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe ZDocument, :type => :model do
   context 'Database Mapping' do
     it { should have_db_column(:resource_uri).of_type :string }
+    it { should inherit_from ZItem }
 
     it 'should validate unique resource uri' do
       should validate_uniqueness_of :resource_uri

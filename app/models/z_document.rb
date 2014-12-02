@@ -11,7 +11,7 @@ class ZDocument < ZItem
     @data ||= self.repository.read(self.resource_uri)
   end
 
-  #@jtodoLOW refactor this beheviour: you need to call save of activerecord first and
+  #@jtodoLOW refactor this behaviour: you need to call save of activerecord first and
   # if you find any problem rollback the transaction and don't use the file repository
   def save(options = {})
     super if write

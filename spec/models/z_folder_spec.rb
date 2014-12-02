@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ZFolder, type: :model do
   context 'Database Mapping' do
+    it { should inherit_from ZItem }
+
     it 'should have a relation with folder' do
       should have_many(:folders)
     end
