@@ -1,6 +1,5 @@
 class CreateZItems < ActiveRecord::Migration
-  #@jtodoMED use change and remove down
-  def up
+  def change
     create_table :z_items, id: :uuid do |t|
       t.string :label
       t.hstore :custom_attributes
@@ -14,9 +13,5 @@ class CreateZItems < ActiveRecord::Migration
 
       t.timestamps
     end
-  end
-
-  def down
-    drop_table :z_items
   end
 end

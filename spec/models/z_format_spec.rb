@@ -1,12 +1,19 @@
 require 'rails_helper'
-#@jtodoIMP
 RSpec.describe ZFormat, type: :model do
-  it { should respond_to :description }
-  it { should respond_to :mime_type }
-  it { should respond_to :accepted_extensions }
-  it { should respond_to :default }
+  context 'Database Mapping' do
+    it { should have_db_column(:id).with_options primary: true }
+    it { should have_db_column(:description).of_type :string }
+    it { should have_db_column(:mime_type).of_type :string }
+    it { should have_db_column(:accepted_extensions).of_type :text }
+    it { should have_db_column(:default).of_type :boolean }
 
-  xit { should validate_presence_of(:identifier) }
-  xit { should validate_presence_of(:mime_type) }
-  xit { should validate_inclusion_of(:default).to_allow([true, false]) }
+
+    it "validate presence of mime_type" do
+      should validate_presence_of :mime_type
+    end
+
+    it "should allow only boolean values for default" do
+      should allow_value(true, false).for :default
+    end
+  end
 end
