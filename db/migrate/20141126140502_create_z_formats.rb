@@ -1,4 +1,5 @@
 class CreateZFormats < ActiveRecord::Migration
+  #@jtodoMED use change and remove down
   def up
     create_table :z_formats do |t|
       t.string :description

@@ -1,4 +1,5 @@
 class CreateZHistories < ActiveRecord::Migration
+  #@jtodoMED use change and remove down
   def up
     create_table :z_histories do |t|
       t.datetime :history_date

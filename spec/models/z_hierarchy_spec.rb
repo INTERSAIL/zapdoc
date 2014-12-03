@@ -10,6 +10,7 @@ describe ZHierarchy, type: :model do
     @hierarchy = ZHierarchy.new item: @item
   end
 
+  #@jtodoLOW remove after change of initialize
   it 'can be created with an item' do
     @hierarchy = ZHierarchy.new item: @item
     expect(@hierarchy.item).to be_equal @item
@@ -32,10 +33,10 @@ describe ZHierarchy, type: :model do
       end
 
       it "should obtain if it's the root folder" do
-        expect(@hierarchy.root?).to be_equal true
+        expect(@hierarchy).to be_root
 
         @hierarchy.item = @hierarchy.folder_class.create! folder: @root, label: "ROOT-1"
-        expect(@hierarchy.root?).to be_equal false
+        expect(@hierarchy).to_not be_root
       end
 
       context 'default folder' do
@@ -46,7 +47,7 @@ describe ZHierarchy, type: :model do
 
         it "should return nil if he's the root" do
           @hierarchy.item = @root
-          expect(@hierarchy.default).to be == nil
+          expect(@hierarchy.default).to be_nil
         end
       end
     end
@@ -62,25 +63,26 @@ describe ZHierarchy, type: :model do
 
       it 'should return a new root folder' do
         expect(@hierarchy.root).to satisfy do |folder|
-          folder.hierarchy.root? == true
+          folder.hierarchy.root? &&
           folder.label == @hierarchy.folder_class.root_label
         end
       end
 
       context 'default folder' do
-        it "should return new root" do
+        it "should return new root folder" do
           expect(@hierarchy.default).to be == @hierarchy.root
         end
       end
     end
   end
 
-  it "ask for item method if doesn't find it on himself" do
-    item = double ZItem
-    lambda = ->(){}
-    expect(item).to receive("nonexistent_method").once.with(["param"], lambda)
-    hierarchy = ZHierarchy.new item: item
-
-    hierarchy.send "nonexistent_method", "param", &lambda
-  end
+  #@deprecated
+  # it "ask for item method if doesn't find it on himself" do
+  #   item = double ZItem
+  #   lambda = ->(){}
+  #   expect(item).to receive("nonexistent_method").once.with(["param"], lambda)
+  #   hierarchy = ZHierarchy.new item: item
+  #
+  #   hierarchy.send "nonexistent_method", "param", &lambda
+  # end
 end

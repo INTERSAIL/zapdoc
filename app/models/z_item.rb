@@ -16,6 +16,8 @@ class ZItem < ActiveRecord::Base
   validates :label, presence: true
   validates :revision, numericality: true, presence: true, unless: ->{ self.new_record? }
 
+  #@jtodoMED add folder required validation
+
   # aliases
   alias_attribute :identifier, :id
 

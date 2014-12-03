@@ -1,8 +1,11 @@
 class ZFolder < ZItem
   #custom validators
   class UniqueRootValidator < ActiveModel::Validator
+
+
     def validate(record)
-      record.errors[:folder] << 'Cannot have two root folders' if ZHierarchy.new.find_root && record.folder.nil?
+      hierarchy = ZHierarchy.new item: record
+      record.errors[:folder] << 'Cannot have two root folders' if hierarchy.find_root && hierarchy.root?
     end
   end
 

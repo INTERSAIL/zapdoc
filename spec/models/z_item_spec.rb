@@ -17,6 +17,8 @@ RSpec.describe ZItem, :type => :model do
       should have_an_alias_attribute :id,:identifier
     end
 
+    #@jtodoIMP add check for historicize
+
     it 'should have a relation with folder' do
       should belong_to :folder
     end
@@ -70,7 +72,7 @@ RSpec.describe ZItem, :type => :model do
       expect(subject.hierarchy.item).to be_equal subject
     end
 
-    it 'should have set a default folder' do
+    it 'should get a default folder' do
       hierarchy = double ZHierarchy
       expect(hierarchy).to receive(:default).once
 
@@ -82,8 +84,8 @@ RSpec.describe ZItem, :type => :model do
         root_folder = ZHierarchy.new.root
         item = ZItem.create! label: "1", folder: root_folder
 
-        expect(ZItem.in_folder(root_folder).first).to be == item
-        expect(ZItem.of_type(:none).empty?).to be_equal true
+        expect(ZItem.in_folder root_folder).to include item
+        expect(ZItem.in_folder(ZFolder.create! label: :label, folder: root_folder) ).to be_empty
       end
     end
   end
@@ -93,8 +95,8 @@ RSpec.describe ZItem, :type => :model do
       mime_type = "image/png"
 
       item = ZItem.create! label: "1", mime_type: mime_type
-      expect(ZItem.of_type(mime_type).first).to be == item
-      expect(ZItem.of_type(:none).empty?).to be_equal true
+      expect(ZItem.of_type mime_type).to include item
+      expect(ZItem.of_type :none).to be_empty
     end
   end
 end

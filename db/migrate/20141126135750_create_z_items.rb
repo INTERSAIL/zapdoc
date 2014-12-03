@@ -1,4 +1,5 @@
 class CreateZItems < ActiveRecord::Migration
+  #@jtodoMED use change and remove down
   def up
     create_table :z_items, id: :uuid do |t|
       t.string :label

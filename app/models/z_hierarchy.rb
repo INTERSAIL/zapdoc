@@ -1,10 +1,15 @@
-class ZHierarchy < ActiveRecord::Base
+class ZHierarchy
+  include ActiveModel::Model
+
   attr_accessor :item
+
+  #@jtodoMED use intialize with static param
 
   def self.table_name
     ZItem.table_name
   end
 
+  #@jtodoLOW make class method
   def root
     find_root || new_root
   end
@@ -23,17 +28,21 @@ class ZHierarchy < ActiveRecord::Base
     find_root || root
   end
 
+  #@jtodoLOW make this class method
+  #@jtodoLOW create a hierarchy_class and folder_class and put them in ZapDoc configurator container
   def find_root
     folder_class.find_by folder: nil
   end
 
   private
 
+  #@jtodoLOW make class method
   def new_root
     folder_class.create label: folder_class.root_label
   end
 
-  def method_missing(name, *args, &block)
-    self.item.send name,args,block
-  end
+  #@deprecated
+  # def method_missing(name, *args, &block)
+  #   self.item.send name,args,block
+  # end
 end
