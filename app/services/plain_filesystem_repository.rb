@@ -16,7 +16,8 @@ class PlainFilesystemRepository
       indx += 1
     end
 
-    File.split(full_path).last if File.binwrite(full_path, data)
+    return File.split(full_path).last if File.binwrite(full_path, data) > 0
+    false
   end
 
   def read(filename)

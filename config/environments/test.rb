@@ -36,7 +36,4 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-
-  # load zapdoc initializers again to fix spring loading problem
-  require_relative '../initializers/zap_doc.rb'
 end

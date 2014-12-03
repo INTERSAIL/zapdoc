@@ -1,7 +1,9 @@
 module Helpers
   module File
+    @repository_path = ZapDoc.config.repository.path
+
     def self.file_path(filename)
-      ZapDoc.config.repository.path.to_s + ::File::SEPARATOR + filename
+      @repository_path.to_s + ::File::SEPARATOR + filename
     end
 
     def self.touch(filename)
@@ -13,7 +15,7 @@ module Helpers
     end
 
     def self.clear_test_data
-      ::FileUtils.rm_f(Dir[::File.join(ZapDoc.config.repository.path, '[^.]*')])
+      ::FileUtils.rm_f(Dir[::File.join(@repository_path, '[^.]*')])
     end
   end
 end
