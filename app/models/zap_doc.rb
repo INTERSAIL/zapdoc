@@ -4,6 +4,7 @@ module ZapDoc
     attr_accessor :repository
   end
 
+  #@jtodoLOW use singleton here
   mattr_accessor :config do
     Configuration.new
   end
