@@ -46,10 +46,6 @@ RSpec.configure do |config|
     end
   end
 
-  config.after(:all) do
-    FileUtils.rm_f(Dir[File.join(ZapDoc.config.repository.path, '[^.]*')])
-  end
-
   # config.include Requests::JsonHelpers, type: :request
 end
 

@@ -1,8 +1,20 @@
 require 'rails_helper'
 #@jtodoIMP
 RSpec.describe PlainFilesystemRepository do
-  xit 'should remove file'
-  xit 'should write file and return filename/false on success or failure'
+  before(:all) do
+    FileUtils.rm_f(Dir[File.join(ZapDoc.config.repository.path, '[^.]*')])
+  end
 
-  #@jtodoLOW when you update the item you should generate a new resource_ur
+  it 'should delete file' do
+  end
+  it 'should write file with success and return filename' do
+  end
+  it 'should write file and return false on failure' do
+  end
+  it 'should append a counter to filename if already exists on write' do
+  end
+  it 'should read a file with success' do
+  end
+  it 'should read a file with error' do
+  end
 end
