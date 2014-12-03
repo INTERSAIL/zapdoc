@@ -1,3 +1,3 @@
 class ZDocumentInfo < ZItemInfo
-  #@jtodoIMP
+  #@jtodoLOW check item info spec
 end

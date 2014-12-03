@@ -1,5 +1,5 @@
 require 'rails_helper'
-#@jtodoIMP
+#@jtodoLOW check item_info_spec
 RSpec.describe ZDocumentInfo, type: :model do
   it { should inherit_from ZItemInfo }
 

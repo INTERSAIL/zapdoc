@@ -1,5 +1,5 @@
 class ZItemInfo
-  #@jtodoIMP the idea is to have a lighter item used to transfer only metadata
+  #@jtodoLOW the idea is to have a lighter item used to transfer only metadata try to do that at api level maybie
   include ActiveModel::Model
 
   attr_accessor :label, :type, :revision, :created_at

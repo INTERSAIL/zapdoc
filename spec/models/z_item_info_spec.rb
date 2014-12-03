@@ -1,5 +1,5 @@
 require 'rails_helper'
-#@jtodoIMP
+#@jtodoLOW check item info
 RSpec.describe ZItemInfo, type: :model do
   context 'Data attributes' do
     it { should respond_to(:label) }
