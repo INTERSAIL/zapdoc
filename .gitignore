@@ -19,5 +19,4 @@ repository/*/
 node_modules
 .idea
 Gemfile.lock
-GuardFile
 ./bin
