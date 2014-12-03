@@ -34,4 +34,7 @@ RSpec.describe ZHistory, :type => :model do
     expect{subject.save}.to change { subject.history_date }
       .to( be_within(2).of Time.now )
   end
+
+  #@jtodoLOW
+  pending 'should create a copy of item as embedded data inside the history'
 end

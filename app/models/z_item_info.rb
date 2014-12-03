@@ -1,5 +1,5 @@
 class ZItemInfo
-  #@jtodoIMP
+  #@jtodoIMP the idea is to have a lighter item used to transfer only metadata
   include ActiveModel::Model
 
   attr_accessor :label, :type, :revision, :created_at
