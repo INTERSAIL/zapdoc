@@ -2,15 +2,12 @@ require 'rails_helper'
 #@jtodoIMP
 RSpec.describe ZItemInfo, type: :model do
   context 'Database Mapping' do
-    it { should respond_to(:identifier) }
     it { should respond_to(:label) }
     it { should respond_to(:type) }
     it { should respond_to(:created_at) }
     it { should respond_to(:revision) }
 
     it { should_not be_persisted }
-    it { should implement_sti }
-    it { should have_timestamps }
 
   end
 

@@ -1,10 +1,9 @@
-class ZItemInfo < ActiveRecord::Base
+class ZItemInfo
   #@jtodoIMP
-  # include ActiveModel::Model
-  # include CreateAttributes
-  #
-  # create_attributes :label, :identifier, :revision, :created_at, :type
-  #
+  include ActiveModel::Model
+
+  attr_accessor :label, :type, :revision, :created_at
+
   # def self.from_z_item(item)
   #   if item.respond_to?(:each)
   #     res = []
@@ -16,4 +15,5 @@ class ZItemInfo < ActiveRecord::Base
   #   end
   #   res
   # end
+
 end
