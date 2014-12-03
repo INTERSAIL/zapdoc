@@ -1,12 +1,13 @@
 module ZapDoc
   class Configuration
+    include Singleton
+
     attr_accessor :filename_generator
     attr_accessor :repository
   end
 
-  #@jtodoLOW use singleton here
   mattr_accessor :config do
-    Configuration.new
+    Configuration.instance
   end
 
   def self.configure
