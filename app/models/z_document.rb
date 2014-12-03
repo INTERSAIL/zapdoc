@@ -1,7 +1,8 @@
 class ZDocument < ZItem
   attr_accessor :data
   attr_accessor :repository, :name_generator
-  # event hook s
+
+  # event hooks
   after_destroy :delete_file
 
   # validation
