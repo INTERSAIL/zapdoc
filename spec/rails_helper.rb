@@ -46,6 +46,10 @@ RSpec.configure do |config|
     end
   end
 
+  # clear all remaning test data
+  config.after(:all) do
+    Helpers::File.clear_test_data
+  end
   # config.include Requests::JsonHelpers, type: :request
 end
 

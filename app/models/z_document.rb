@@ -19,7 +19,9 @@ class ZDocument < ZItem
   end
 
   def save!(options = {})
-    super if write!
+    if write!
+      super
+    end
   end
 
   private
@@ -48,7 +50,7 @@ class ZDocument < ZItem
   end
 
   def write!
-    raise 'Error writing data' unless ( self.resource_uri = self.repository.write(self.resource_uri, self.data) )
+    raise "Error writing data" unless ( self.resource_uri = self.repository.write(self.resource_uri, self.data) )
     self.resource_uri
   end
 

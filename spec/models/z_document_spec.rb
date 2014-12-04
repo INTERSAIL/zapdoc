@@ -41,10 +41,14 @@ RSpec.describe ZDocument, :type => :model do
       expect { document.save! }.to raise_exception 'Error writing data'
     end
 
-    it 'should read data when read from database' do
-      document_persisted = ZDocument.create! label: "document2"
+    it 'should read data when read from database', test: true do
+      null_write = double
+      allow(null_write).to receive(:write).and_return("resource uri")
+      allow(null_write).to receive(:read)
+      document_persisted = ZDocument.create! label: "document2", repository: null_write
+
       repository = double
-      expect(repository).to receive(:read).once.with(document_persisted.resource_uri).and_return :data
+      expect(repository).to receive(:read).once.with("resource uri").and_return :data
       document_persisted.repository = repository
 
       expect(document_persisted.data).to eq :data
@@ -61,7 +65,7 @@ RSpec.describe ZDocument, :type => :model do
     context 'write repository integration' do
       it 'should handle write errors with write!' do
         repository = double
-        expect(repository).to receive(:write).and_return(false)
+        expect(repository).to receive(:write).and_return(nil)
         document.repository = repository
 
         expect { document.send :write! }.to raise_exception 'Error writing data'
