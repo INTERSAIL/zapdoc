@@ -10,12 +10,6 @@ describe ZHierarchy, type: :model do
     @hierarchy = ZHierarchy.new @item
   end
 
-  #@jtodoLOW remove after change of initialize
-  it 'can be created with an item' do
-    @hierarchy = ZHierarchy.new @item
-    expect(@hierarchy.item).to be_equal @item
-  end
-
   context 'root folders' do
     it "should return false on root? if it's not a folder" do
       expect(@hierarchy.root?).to be_equal false

@@ -31,15 +31,12 @@ class ZHierarchy
     self.class.find_root || self.class.root
   end
 
-  #@jtodoLOW make this class method
-  #@jtodoLOW create a hierarchy_class and folder_class and put them in ZapDoc configurator container
   def self.find_root
     folder_class.find_by folder: nil
   end
 
   private
 
-  #@jtodoLOW make class method
   def self.new_root
     folder_class.create label: folder_class.root_label
   end

@@ -8,6 +8,10 @@ RSpec.describe ZDocument, :type => :model do
     it 'should validate unique resource uri' do
       should validate_uniqueness_of :resource_uri
     end
+
+    it 'should validate presence of folder' do
+      should validate_presence_of :folder
+    end
   end
 
   it 'should have a default resource uri' do
@@ -19,7 +23,6 @@ RSpec.describe ZDocument, :type => :model do
     expect(document.resource_uri).to be == :fake_name
   end
 
-  #@jtodoLOW here should use an adapter and test that with mock instead of repository then integrate test the implementations
   context 'data' do
     let (:document) { ZDocument.new label: "document1", data: "Hello world" }
 

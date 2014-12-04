@@ -17,8 +17,6 @@ RSpec.describe ZItem, :type => :model do
       should have_an_alias_attribute :id,:identifier
     end
 
-    #@jtodoIMP add check for historicize
-
     it 'should have a relation with folder' do
       should belong_to :folder
     end

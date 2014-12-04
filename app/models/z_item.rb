@@ -16,8 +16,6 @@ class ZItem < ActiveRecord::Base
   validates :label, presence: true
   validates :revision, numericality: true, presence: true, unless: ->{ self.new_record? }
 
-  #@jtodoMED add folder required validation
-
   # aliases
   alias_attribute :identifier, :id
 
@@ -37,5 +35,5 @@ class ZItem < ActiveRecord::Base
     ZHistory.create item: ZItem.find(self.id) unless self.new_record?
   end
 
-  #@jtodoLOW handle the first and last with timestamp because of uuid as id
+  #@jtodoMED handle the first and last with timestamp because of uuid as id
 end

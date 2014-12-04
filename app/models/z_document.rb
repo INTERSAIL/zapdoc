@@ -7,6 +7,7 @@ class ZDocument < ZItem
 
   # validation
   validates :resource_uri, uniqueness: true
+  validates :folder, presence: true
 
   def data
     @data ||= self.repository.read(self.resource_uri)
@@ -54,7 +55,7 @@ class ZDocument < ZItem
     self.resource_uri
   end
 
-  #@jtodoLOW handle case when delete fails and in that case don't remove the file
+  #@jtodoMED handle case when delete fails and in that case don't remove the file
   def delete_file
     self.repository.delete(self.resource_uri)
   end

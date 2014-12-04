@@ -35,6 +35,6 @@ RSpec.describe ZHistory, :type => :model do
       .to( be_within(2).of Time.now )
   end
 
-  #@jtodoLOW
+  #@jtodoMED should create a copy of item as embedded data inside the history
   pending 'should create a copy of item as embedded data inside the history'
 end
