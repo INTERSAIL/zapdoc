@@ -24,7 +24,7 @@ class ZItem < ActiveRecord::Base
   private
 
   def initialize_hierarchy
-    self.hierarchy ||= ZHierarchy.new item: self
+    self.hierarchy ||= ZHierarchy.new self
   end
 
   def set_defaults

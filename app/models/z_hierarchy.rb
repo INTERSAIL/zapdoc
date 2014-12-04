@@ -1,9 +1,8 @@
 class ZHierarchy
   attr_accessor :item
 
-  #@jtodoMED here make param mandatory and no hash
-  def initialize(args = {})
-    self.item = args.fetch(:item)
+  def initialize(item)
+    self.item = item
   end
 
   def self.table_name

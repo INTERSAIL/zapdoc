@@ -7,12 +7,12 @@ end
 describe ZHierarchy, type: :model do
   before(:all) do
     @item = ZItem.new
-    @hierarchy = ZHierarchy.new item: @item
+    @hierarchy = ZHierarchy.new @item
   end
 
   #@jtodoLOW remove after change of initialize
   it 'can be created with an item' do
-    @hierarchy = ZHierarchy.new item: @item
+    @hierarchy = ZHierarchy.new @item
     expect(@hierarchy.item).to be_equal @item
   end
 
@@ -81,7 +81,7 @@ describe ZHierarchy, type: :model do
   #   item = double ZItem
   #   lambda = ->(){}
   #   expect(item).to receive("nonexistent_method").once.with(["param"], lambda)
-  #   hierarchy = ZHierarchy.new item: item
+  #   hierarchy = ZHierarchy.new item
   #
   #   hierarchy.send "nonexistent_method", "param", &lambda
   # end
