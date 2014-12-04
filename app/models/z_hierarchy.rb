@@ -42,7 +42,11 @@ class ZHierarchy
   end
 
   #@deprecated
-  # def method_missing(name, *args, &block)
-  #   self.item.send name,args,block
+  # def method_missing(method_name, *args, &block)
+  #   self.item.send method_name,args,&block
+  # end
+  #
+  # def respond_to_missing?(method_name, include_private = false)
+  #   self.respond_to? method_name, include_private || super
   # end
 end
