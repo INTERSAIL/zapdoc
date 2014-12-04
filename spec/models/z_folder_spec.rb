@@ -5,15 +5,15 @@ RSpec.describe ZFolder, type: :model do
     it { should inherit_from ZItem }
 
     it 'should have a relation with folder' do
-      should have_many(:folders)
+      should have_many :folders
     end
 
     it 'should have a relation with document' do
-      should have_many(:documents)
+      should have_many :documents
     end
 
     it 'should have a relation with item' do
-      should have_many(:items)
+      should have_many(:items).dependent :destroy
     end
   end
 
