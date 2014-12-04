@@ -41,7 +41,7 @@ RSpec.describe ZDocument, :type => :model do
       expect { document.save! }.to raise_exception 'Error writing data'
     end
 
-    it 'should read data when read from database', test: true do
+    it 'should read data when read from database' do
       null_write = double
       allow(null_write).to receive(:write).and_return("resource uri")
       allow(null_write).to receive(:read)
