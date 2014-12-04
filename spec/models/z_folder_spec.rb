@@ -37,7 +37,9 @@ RSpec.describe ZFolder, type: :model do
     it "should ask for the root folder" do
       hierarchy = double ZHierarchy
       expect(hierarchy).to receive(:root).once
-      @root.hierarchy = hierarchy
+      class_mock = double
+      expect(class_mock).to receive(:class).and_return hierarchy
+      @root.hierarchy = class_mock
 
       @root.root
     end
@@ -63,7 +65,7 @@ RSpec.describe ZFolder, type: :model do
       # -- ROOT:SUB2
       ZItem.destroy_all
 
-      @root = ZHierarchy.new.root
+      @root = ZHierarchy.root
 
       @root_doc1 = @root.documents.create!(label: 'ROOT:1', format_identifier: :txt)
 

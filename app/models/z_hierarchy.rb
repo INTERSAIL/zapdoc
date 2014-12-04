@@ -1,17 +1,17 @@
 class ZHierarchy
-  include ActiveModel::Model
-
   attr_accessor :item
 
-  #@jtodoMED use intialize with static param
+  #@jtodoMED here make param mandatory and no hash
+  def initialize(args = {})
+    self.item = args.fetch(:item)
+  end
 
   def self.table_name
     ZItem.table_name
   end
 
-  #@jtodoLOW make class method
-  def root
-    find_root || new_root
+  def self.root
+    self.find_root || self.new_root
   end
 
   def root?
@@ -19,25 +19,29 @@ class ZHierarchy
     self.item.folder.nil?
   end
 
-  def folder_class
+  def self.folder_class
     ZFolder
+  end
+
+  def folder_class
+    self.class.folder_class
   end
 
   def default
     return nil if root?
-    find_root || root
+    self.class.find_root || self.class.root
   end
 
   #@jtodoLOW make this class method
   #@jtodoLOW create a hierarchy_class and folder_class and put them in ZapDoc configurator container
-  def find_root
+  def self.find_root
     folder_class.find_by folder: nil
   end
 
   private
 
   #@jtodoLOW make class method
-  def new_root
+  def self.new_root
     folder_class.create label: folder_class.root_label
   end
 

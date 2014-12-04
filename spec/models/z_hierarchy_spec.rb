@@ -29,7 +29,7 @@ describe ZHierarchy, type: :model do
       end
 
       it 'should return root folder' do
-        expect(@hierarchy.root).to be == @root
+        expect(@hierarchy.class.root).to be == @root
       end
 
       it "should obtain if it's the root folder" do
@@ -62,7 +62,7 @@ describe ZHierarchy, type: :model do
       end
 
       it 'should return a new root folder' do
-        expect(@hierarchy.root).to satisfy do |folder|
+        expect(@hierarchy.class.root).to satisfy do |folder|
           folder.hierarchy.root? &&
           folder.label == @hierarchy.folder_class.root_label
         end
@@ -70,7 +70,7 @@ describe ZHierarchy, type: :model do
 
       context 'default folder' do
         it "should return new root folder" do
-          expect(@hierarchy.default).to be == @hierarchy.root
+          expect(@hierarchy.default).to be == @hierarchy.class.root
         end
       end
     end

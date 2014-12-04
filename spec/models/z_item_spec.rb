@@ -81,7 +81,7 @@ RSpec.describe ZItem, :type => :model do
 
     context 'folder structure' do
       it "should have query scope for folder with in_folder" do
-        root_folder = ZHierarchy.new.root
+        root_folder = ZHierarchy.root
         item = ZItem.create! label: "1", folder: root_folder
 
         expect(ZItem.in_folder root_folder).to include item
