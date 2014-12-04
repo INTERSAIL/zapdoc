@@ -12,6 +12,7 @@ RSpec.describe ZItem, :type => :model do
     it { should have_db_column(:z_item_id).of_type :uuid }
     it { should implement_sti }
     it { should have_timestamps }
+    it { should have_db_index :z_item_id }
 
     it 'should have an id alias to identifier' do
       should have_an_alias_attribute :id,:identifier

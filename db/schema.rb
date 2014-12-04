@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141126141019) do
+ActiveRecord::Schema.define(version: 20141204111421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20141126141019) do
     t.datetime "updated_at"
   end
 
+  add_index "z_histories", ["z_item_id"], name: "index_z_histories_on_z_item_id", using: :btree
+
   create_table "z_item_infos", force: true do |t|
     t.string   "label"
     t.string   "identifier"
@@ -66,5 +68,7 @@ ActiveRecord::Schema.define(version: 20141126141019) do
     t.datetime "updated_at"
     t.string   "resource_uri"
   end
+
+  add_index "z_items", ["z_item_id"], name: "index_z_items_on_z_item_id", using: :btree
 
 end
