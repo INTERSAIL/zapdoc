@@ -3,16 +3,14 @@ require 'api_helper'
 RSpec.describe 'Items', type: :request do
 
   before(:all) do
+    ZItem.destroy_all
     # directory structure:
     # - ROOT
     # -- ROOT:1
     # -- ROOT:SUB1
     # --- SUB1:1
     # -- ROOT:SUB2
-    ZItem.destroy_all
-
     @root = ZHierarchy.root
-
     @root_doc1 = @root.documents.create!(label: 'ROOT:1', format_identifier: :txt)
 
     @sub = @root.folders.create!(label: 'ROOT:SUB1')
@@ -20,8 +18,6 @@ RSpec.describe 'Items', type: :request do
 
     @sub2 = @root.folders.create!(label: 'ROOT:SUB2')
   end
-
-  #@jtodoIMP add assert of success to all a context of responses
 
   it 'should list all items in ROOT' do
     get "/api/z_items"
@@ -47,20 +43,20 @@ RSpec.describe 'Items', type: :request do
     get "/api/z_items?folder_id=0"
 
     expect(response).to be_success
-    expect(json.select { |j| j[:id] == @root_doc1.id}.count).to eq(1)
+    expect(json.select { |j| j[:id] == @root_doc1.id }.count).to eq(1)
   end
 
   it 'should return root contents if folder_id not specified' do
     get "/api/z_items"
 
     expect(response).to be_success
-    expect(json.select { |j| j[:id] == @root_doc1.id}.count).to eq(1)
+    expect(json.select { |j| j[:id] == @root_doc1.id }.count).to eq(1)
   end
 
   it 'should not return the parent folder if ROOT' do
     get "/api/z_items?folder_id=0"
 
-    expect(json.select { |j| j[:id] == @root.id}.count).to eq(0)
+    expect(json.select { |j| j[:id] == @root.id }.count).to eq(0)
   end
 
   it 'should return only parent folder if not ROOT and empty' do

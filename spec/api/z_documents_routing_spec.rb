@@ -1,6 +1,23 @@
-require 'rails_helper'
+require 'api_helper'
 
 RSpec.describe 'Documents', type: :request do
+  before(:all) do
+    ZItem.destroy_all
+    # directory structure:
+    # - ROOT
+    # -- ROOT:1
+    # -- ROOT:SUB1
+    # --- SUB1:1
+    # -- ROOT:SUB2
+    @root = ZHierarchy.root
+    @root_doc1 = @root.documents.create!(label: 'ROOT:1', format_identifier: :txt)
+
+    @sub = @root.folders.create!(label: 'ROOT:SUB1')
+    @sub_doc1 = @sub.documents.create!(label: 'SUB1:1', format_identifier: :txt)
+
+    @sub2 = @root.folders.create!(label: 'ROOT:SUB2')
+  end
+
   it 'should list all documents in ROOT' do
     get "/api/z_documents"
     expect(response.status).to eq(200)
