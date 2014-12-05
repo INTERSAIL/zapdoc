@@ -25,15 +25,15 @@ RSpec.describe 'Items', type: :request do
 
   it 'should list all items in ROOT' do
     get "/api/z_items"
-    expect(response).to be_success
 
+    expect(response).to be_success
     expect(json.count).to eq(3)
   end
 
   it 'should list all items in SUB1' do
     get "/api/z_items?folder_id=#{@sub.id}"
-    expect(response).to be_success
 
+    expect(response).to be_success
     expect(json.count).to eq(2)
   end
 
@@ -47,7 +47,6 @@ RSpec.describe 'Items', type: :request do
     get "/api/z_items?folder_id=0"
 
     expect(response).to be_success
-
     expect(json.select { |j| j[:id] == @root_doc1.id}.count).to eq(1)
   end
 
@@ -55,7 +54,6 @@ RSpec.describe 'Items', type: :request do
     get "/api/z_items"
 
     expect(response).to be_success
-
     expect(json.select { |j| j[:id] == @root_doc1.id}.count).to eq(1)
   end
 
@@ -74,24 +72,24 @@ RSpec.describe 'Items', type: :request do
 
   it 'should return 404 if a folder does not exists' do
     get '/api/z_items?folder_id=fake123'
+
     expect(response).to have_http_status :not_found
   end
 
   context 'check items attributes' do
     before(:all) { get '/api/z_items' }
 
-    xit 'should have all attribures for each item' do
+    it 'should have all attribures for each item' do
       json.each do |j|
         check_attributes_for_item_info(j)
       end
     end
-
   end
 
-  xit 'should be possible to list only all folders in ROOT'
-  xit 'should be possible to list only all documents in ROOT'
+  it 'should be possible to list only all folders in ROOT'
+  it 'should be possible to list only all documents in ROOT'
 
-  xit 'should return 404 if document does not exists' do
+  it 'should return 404 if document does not exists' do
     get '/api/z_items/fake_id'
 
     expect(response.status).to eq(404)
@@ -99,10 +97,10 @@ RSpec.describe 'Items', type: :request do
 
   context 'get single item' do
     before(:all) {
-      get "/api/z_items/#{@sub_doc1.identifier}"
+      get "/api/z_items/#{@sub_doc1.id}"
     }
 
-    xit 'should have all attributes' do
+    it 'should have all attributes' do
       check_attributes_for_item_info(json)
     end
   end
@@ -155,9 +153,9 @@ RSpec.describe 'Items', type: :request do
     xit 'should move a document into another folder'
   end
 
-  xit 'should get document in ROOT' do
-    get "/api/z_items/#{@root_doc1.identifier}"
-    expect(response.status).to be_success
+  it 'should get document in ROOT' do
+    get "/api/z_items/#{@root_doc1.id}"
+    expect(response).to be_success
 
     expect(json[:label]).to eq(@root_doc1.label)
   end

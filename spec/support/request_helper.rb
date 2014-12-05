@@ -9,8 +9,6 @@ module Helpers
         expect(item).to have_key(:label)
         expect(item).to have_key(:revision)
         expect(item).to have_key(:created_at)
-        expect(item).to have_key(:type)
-        expect(item).to have_key(:identifier)
       end
     end
   end
