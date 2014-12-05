@@ -3,7 +3,7 @@ require 'rails_helper'
 class FakeController < ApplicationController
   include Concerns::Postgres
 
-  @@valid_ids << '0'
+  valid_id nil, '0'
 
   def index
     head :ok
@@ -23,12 +23,13 @@ RSpec.describe FakeController, type: :request do
 
   context 'validation' do
     it 'should check for valid postgres id' do
-      expect(subject.valid_id? SecureRandom.uuid).to be_truthy
-      expect(subject.valid_id? "ads-das-ddd").to be_falsy
+      expect(subject.send("valid_id?", SecureRandom.uuid) ).to be_truthy
+      expect(subject.send("valid_id?", "ads-das-ddd") ).to be_falsy
     end
 
     it 'should validate if id is in the valid_ids field' do
-      expect(subject.valid_id? '0').to be_truthy
+      expect(subject.send("valid_id?", "0") ).to be_truthy
+      expect(subject.send("valid_id?", nil) ).to be_truthy
     end
   end
 
