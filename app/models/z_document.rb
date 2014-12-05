@@ -20,9 +20,7 @@ class ZDocument < ZItem
   end
 
   def save!(options = {})
-    if write!
-      super
-    end
+    super if write!
   end
 
   private

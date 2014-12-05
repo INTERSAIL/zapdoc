@@ -1,7 +1,6 @@
 require 'api_helper'
 
 RSpec.describe 'Items', type: :request do
-
   before(:all) do
     ZItem.destroy_all
     # directory structure:

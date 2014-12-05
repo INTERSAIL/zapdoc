@@ -36,14 +36,6 @@ RSpec.describe ZDocument, :type => :model do
       expect(document.resource_uri).to be_equal :resource_uri
     end
 
-    it 'should handle write errors with save!' do
-      repository = double
-      expect(repository).to receive(:write).once.with(document.resource_uri, document.data).and_return false
-      document.repository = repository
-
-      expect { document.save! }.to raise_exception 'Error writing data'
-    end
-
     it 'should read data when read from database' do
       null_write = double
       allow(null_write).to receive(:write).and_return("resource uri")
@@ -65,7 +57,7 @@ RSpec.describe ZDocument, :type => :model do
       document.destroy
     end
 
-    context 'write repository integration' do
+    context 'repository integration' do
       it 'should handle write errors with write!' do
         repository = double
         expect(repository).to receive(:write).and_return(nil)
@@ -80,6 +72,15 @@ RSpec.describe ZDocument, :type => :model do
         document.repository = repository
 
         expect(document.send :write!).to be :resource_uri
+      end
+      context 'errors handling' do
+        it 'should handle null write errors with save!' do
+          repository = double
+          expect(repository).to receive(:write).once.with(document.resource_uri, document.data).and_return nil
+          document.repository = repository
+
+          expect { document.save! }.to raise_exception 'Error writing data'
+        end
       end
     end
   end

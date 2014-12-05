@@ -19,6 +19,7 @@ RSpec.describe ZFolder, type: :model do
 
   context "hierarchy" do
     before(:all) do
+      ZFolder.destroy_all
       @root = ZFolder.create! label: ZFolder.root_label, folder: nil
     end
 
