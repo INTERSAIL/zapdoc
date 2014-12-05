@@ -24,9 +24,14 @@ RSpec.describe ZDocument, :type => :model do
   end
 
   context 'data' do
-    let (:document) { ZDocument.new label: "document1", data: "Hello world" }
+    let (:document) {
+      null_write = double
+      allow(null_write).to receive(:write).and_return("resource uri")
+      allow(null_write).to receive(:read)
+      ZDocument.new label: "document1", data: "Hello world", repository: null_write
+    }
 
-    it 'should save data when write to database' do
+    it 'should save data when write to db' do
       repository = double
       expect(repository).to receive(:write).once.with(document.resource_uri, document.data).and_return :resource_uri
       document.repository = repository
@@ -36,14 +41,22 @@ RSpec.describe ZDocument, :type => :model do
       expect(document.resource_uri).to be_equal :resource_uri
     end
 
-    it 'should read data when read from database' do
+    it 'should not write empty data' do
       null_write = double
-      allow(null_write).to receive(:write).and_return("resource uri")
+      allow(null_write).to receive(:read)
+      document.repository = null_write
+      document.data = nil
+
+      document.save
+    end
+
+    it 'should read data on read from db' do
+      null_write = double
       allow(null_write).to receive(:read)
       document_persisted = ZDocument.create! label: "document2", repository: null_write
 
       repository = double
-      expect(repository).to receive(:read).once.with("resource uri").and_return :data
+      expect(repository).to receive(:read).once.with(document_persisted.resource_uri).and_return :data
       document_persisted.repository = repository
 
       expect(document_persisted.data).to eq :data
@@ -73,6 +86,7 @@ RSpec.describe ZDocument, :type => :model do
 
         expect(document.send :write!).to be :resource_uri
       end
+
       context 'errors handling' do
         it 'should handle null write errors with save!' do
           repository = double

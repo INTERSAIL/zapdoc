@@ -10,11 +10,17 @@ class FakeController < ApplicationController
   end
 end
 
-Rails.application.routes.draw do
-  get '/fake(/:id)', to: 'fake#index'
-end
-
 RSpec.describe FakeController, type: :request do
+
+  before(:all) do
+    Rails.application.routes.draw do
+      get '/fake(/:id)', to: 'fake#index'
+    end
+  end
+  after(:all) do
+    Rails.application.reload_routes!
+  end
+
   context 'validation' do
     it 'should check for valid postgres id' do
       expect(subject.valid_id? SecureRandom.uuid).to be_truthy

@@ -44,16 +44,20 @@ class ZDocument < ZItem
     self.resource_uri = self.name_generator.next
   end
 
+  #@jtodoLOW here better usw the activerecord first in save
   def write
+    return true if self.data.nil?
     self.resource_uri = self.repository.write(self.resource_uri, self.data) || self.resource_uri
   end
 
+  #@jtodoLOW here better usw the activerecord first in save
   def write!
+    return true if self.data.nil?
     raise "Error writing data" unless ( self.resource_uri = self.repository.write(self.resource_uri, self.data) )
     self.resource_uri
   end
 
-  #@jtodoMED handle case when delete fails and in that case don't remove the file
+  #@jtodoLOW handle case when delete fails and in that case don't remove the file
   def delete_file
     self.repository.delete(self.resource_uri)
   end
