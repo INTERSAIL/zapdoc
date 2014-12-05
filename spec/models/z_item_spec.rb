@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ZItem, :type => :model do
   context 'Database Mapping' do
-    it { should have_db_column(:id).of_type :uuid }
+    it { should have_db_column(:id).of_type(:uuid).with_options primary: true }
     it { should have_db_column(:label).of_type :string }
     it { should have_db_column(:custom_attributes).of_type :hstore }
     it { should have_db_column(:tags).of_type :text }

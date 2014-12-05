@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-def clearFolders
-  ZFolder.destroy_all
-end
-
 describe ZHierarchy, type: :model do
+  def clearFolders
+    ZFolder.destroy_all
+  end
+
   before(:all) do
     @item = ZItem.new
     @hierarchy = ZHierarchy.new @item
@@ -58,7 +58,7 @@ describe ZHierarchy, type: :model do
       it 'should return a new root folder' do
         expect(@hierarchy.class.root).to satisfy do |folder|
           folder.hierarchy.root? &&
-          folder.label == @hierarchy.folder_class.root_label
+              folder.label == @hierarchy.folder_class.root_label
         end
       end
 

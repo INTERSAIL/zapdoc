@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe ZFormat, type: :model do
   context 'Database Mapping' do
-    it { should have_db_column(:id).with_options primary: true }
+    it { should have_db_column(:id).of_type(:uuid).with_options primary: true }
     it { should have_db_column(:description).of_type :string }
     it { should have_db_column(:mime_type).of_type :string }
     it { should have_db_column(:accepted_extensions).of_type :text }
