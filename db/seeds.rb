@@ -5,11 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-ZFormat.destroy_all
-ZFormat.create!(identifier: :unknown, description: 'Unknown format', mime_type: 'application/octet-stream', accepted_extensions: [], default: true)
-ZFormat.create!(identifier: :pdf, description: 'PDF', mime_type: 'application/pdf', accepted_extensions: ['pdf'], default: false)
-ZFormat.create!(identifier: :p7m, description: 'PKCS#7', mime_type: 'application/pkcs7-data', accepted_extensions: ['pdf'], default: false)
-ZFormat.create!(identifier: :txt, description: 'Plain Text', mime_type: 'text/plain', accepted_extensions: ['txt'], default: false)
+# ZFormat.destroy_all
+# ZFormat.create!(identifier: :unknown, description: 'Unknown format', mime_type: 'application/octet-stream', accepted_extensions: [], default: true)
+# ZFormat.create!(identifier: :pdf, description: 'PDF', mime_type: 'application/pdf', accepted_extensions: ['pdf'], default: false)
+# ZFormat.create!(identifier: :p7m, description: 'PKCS#7', mime_type: 'application/pkcs7-data', accepted_extensions: ['pdf'], default: false)
+# ZFormat.create!(identifier: :txt, description: 'Plain Text', mime_type: 'text/plain', accepted_extensions: ['txt'], default: false)
 
 # f = Rails.root.join('db', 'seeds', "#{Rails.env}.rb").to_s
 # require f
