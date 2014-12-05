@@ -16,7 +16,8 @@
 /tmp
 repository/*/
 .idea
-node_modules
-.idea
 Gemfile.lock
 ./bin
+
+# Ignore MacOsx Specific data
+.DS_Store
