@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ZDocument, :type => :model do
   context 'Database Mapping' do
+    before(:all) { ZDocument.destroy_all }
+
     it { should have_db_column(:resource_uri).of_type :string }
     it { should inherit_from ZItem }
 
