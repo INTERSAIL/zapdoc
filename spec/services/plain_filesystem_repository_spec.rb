@@ -21,10 +21,10 @@ RSpec.describe PlainFilesystemRepository do
       expect(Helpers::File.exists? @filename).to be_truthy
     end
     it 'should write file and return nil on errors' do
-      File.should_receive(:binwrite).and_raise Exception.new
+      expect(File).to receive(:binwrite).and_raise Exception.new
       expect(repository.write "", "").to be_falsey
 
-      File.should_receive(:binwrite).and_return -1
+      expect(File).to receive(:binwrite).and_return -1
       expect(repository.write "", "").to be_falsey
     end
   end
