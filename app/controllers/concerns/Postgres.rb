@@ -6,23 +6,18 @@ module Concerns
       @valid_ids = []
       before_filter ->(id=params[:folder_id]) {validate_id id}
       before_filter ->(id=params[:id]) {validate_id id}
+
+      cattr_accessor :valid_ids
+
+      self.valid_ids = []
     end
 
     module ClassMethods
       attr_accessor :valid_ids
 
       protected
-      def inherited(subclass)
-        subclass.inherit_attributes(@valid_ids)
-      end
-
-      def inherit_attributes(attrs)
-        @valid_ids ||= []
-        @valid_ids.concat attrs
-      end
-
       def valid_id(*args)
-        @valid_ids += Array(args)
+        self.valid_ids += Array(args)
       end
     end
 
