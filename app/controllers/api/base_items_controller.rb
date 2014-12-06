@@ -3,7 +3,9 @@ module Api
     include Concerns::Postgres
     # filters
     # set extra valid id for postgres filter
-    valid_id nil, '0'
+    valid_id '0'
+    check_params :id, :folder_id
+
     before_filter :set_folder , only: :index
 
     protected

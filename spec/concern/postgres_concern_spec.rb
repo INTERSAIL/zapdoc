@@ -3,7 +3,8 @@ require 'rails_helper'
 class FakeController < ApplicationController
   include Concerns::Postgres
 
-  valid_id nil, '0'
+  valid_id '0'
+  check_params :id, :folder_id
 
   def index
     head :ok
@@ -23,13 +24,12 @@ RSpec.describe FakeController, type: :request do
 
   context 'validation' do
     it 'should check for valid postgres id' do
-      expect(subject.send("valid_id?", SecureRandom.uuid) ).to be_truthy
-      expect(subject.send("valid_id?", "ads-das-ddd") ).to be_falsy
+      expect(subject.send("valid_id?", SecureRandom.uuid) ).to be true
+      expect(subject.send("valid_id?", "ads-das-ddd") ).to be false
     end
 
     it 'should validate if id is in the valid_ids field' do
-      expect(subject.send("valid_id?", "0") ).to be_truthy
-      expect(subject.send("valid_id?", nil) ).to be_truthy
+      expect(subject.send("valid_id?", "0") ).to be true
     end
   end
 
@@ -42,6 +42,11 @@ RSpec.describe FakeController, type: :request do
     it 'should return success if id is in the valid_ids field' do
       get '/fake/0'
       expect(response).to be_success
+    end
+
+    it 'should return not_found if id is given and is not in the valid_ids field' do
+      get '/fake/fake123'
+      expect(response).to have_http_status :not_found
     end
   end
 
